@@ -5,22 +5,25 @@
 #include <string>
 #include <vector>
 #include <iostream>
+#include <memory>
 #include <tile/Tile.hpp>
 
 class Map {
 public:
-    Map(SDL_Renderer* renderer, const std::string& tilesetPath, float tileWidth, float tileHeight, int tilesPerRow);
+    Map(SDL_Renderer* renderer, const std::string& tilesetPath, int tileWidth, int tileHeight, int tilesPerRow);
     ~Map();
-
+    friend class Tile;
     void loadMap(const std::vector<std::vector<int>>& mapData);
     void render();
+    void handleClick(int mouseX, int mouseY);
 private:
     SDL_Renderer* renderer;
     SDL_Texture* tileSet;
 
     int cols, rows, tilesPerRow;
-    float tileWidth, tileHeight;
+    int tileWidth, tileHeight;
     std::vector<std::vector<int>> mapData;
+    std::vector<std::vector<std::unique_ptr<Tile>>> tiles;
     SDL_Rect getSrcRect(int tileIndex);
     SDL_Rect getDestRect(int row, int col);
 };
