@@ -26,6 +26,7 @@ CMakeFiles/TowerDefense.dir/src/core/Game.cpp.obj: C:/Users/Admin/TowerDefense2/
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_log.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_main.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_messagebox.h \
+  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_mixer.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_mouse.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_mutex.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_pixels.h \
@@ -42,6 +43,7 @@ CMakeFiles/TowerDefense.dir/src/core/Game.cpp.obj: C:/Users/Admin/TowerDefense2/
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_thread.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_timer.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_touch.h \
+  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_ttf.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_version.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_video.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/begin_code.h \
@@ -716,6 +718,7 @@ CMakeFiles/TowerDefense.dir/src/main.cpp.obj: C:/Users/Admin/TowerDefense2/src/m
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_log.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_main.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_messagebox.h \
+  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_mixer.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_mouse.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_mutex.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_pixels.h \
@@ -732,6 +735,7 @@ CMakeFiles/TowerDefense.dir/src/main.cpp.obj: C:/Users/Admin/TowerDefense2/src/m
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_thread.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_timer.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_touch.h \
+  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_ttf.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_version.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_video.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/begin_code.h \
@@ -1082,15 +1086,11 @@ C:/msys64/ucrt64/include/c++/15.2.0/exception:
 
 C:/Users/Admin/TowerDefense2/include/SDL2/SDL_image.h:
 
-C:/msys64/ucrt64/include/_mingw_stdarg.h:
-
 C:/msys64/ucrt64/include/c++/15.2.0/bits/atomic_base.h:
 
+C:/msys64/ucrt64/include/_mingw_stdarg.h:
+
 C:/Users/Admin/TowerDefense2/include/SDL2/SDL_joystick.h:
-
-C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx10_2-512convertintrin.h:
-
-C:/msys64/ucrt64/include/c++/15.2.0/bits/atomic_lockfree_defines.h:
 
 C:/Users/Admin/TowerDefense2/include/SDL2/SDL_keyboard.h:
 
@@ -1113,6 +1113,8 @@ C:/Users/Admin/TowerDefense2/include/SDL2/SDL_log.h:
 C:/Users/Admin/TowerDefense2/include/SDL2/SDL_main.h:
 
 C:/Users/Admin/TowerDefense2/include/SDL2/SDL_messagebox.h:
+
+C:/Users/Admin/TowerDefense2/include/SDL2/SDL_mixer.h:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/xsaveintrin.h:
 
@@ -1143,6 +1145,8 @@ C:/Users/Admin/TowerDefense2/include/SDL2/SDL_quit.h:
 C:/Users/Admin/TowerDefense2/include/SDL2/SDL_render.h:
 
 C:/Users/Admin/TowerDefense2/include/SDL2/SDL_rwops.h:
+
+C:/Users/Admin/TowerDefense2/include/SDL2/SDL_ttf.h:
 
 C:/Users/Admin/TowerDefense2/include/SDL2/SDL_scancode.h:
 
@@ -1203,6 +1207,10 @@ C:/msys64/ucrt64/include/c++/15.2.0/bits/alloc_traits.h:
 C:/msys64/ucrt64/include/c++/15.2.0/bits/allocated_ptr.h:
 
 C:/msys64/ucrt64/include/c++/15.2.0/bits/allocator.h:
+
+C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/avx10_2-512convertintrin.h:
+
+C:/msys64/ucrt64/include/c++/15.2.0/bits/atomic_lockfree_defines.h:
 
 C:/msys64/ucrt64/include/c++/15.2.0/bits/cxxabi_init_exception.h:
 

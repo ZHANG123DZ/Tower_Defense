@@ -2,36 +2,23 @@
 #include <string.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
+#include <SDL2/SDL_mixer.h>
 
 #include <core/Game.hpp>
 #include <core/Map.hpp>
+
 Map *map =nullptr;
 
 std::vector<std::vector<int>> level = {
-    {2,2,1,2,0,1,2,1,2,2,1,0,0,1,1,1,2,0,2,0,2,0,0,2,2,2,1,2,1,0,1,2,1,2,2,2,0,0,0,2,2,1,2,1,2,0,0,2},
-    {1,0,2,2,1,0,2,2,0,1,0,2,2,1,0,1,1,1,1,0,0,2,0,1,0,1,2,2,2,2,2,0,1,0,0,1,0,1,1,0,0,2,1,1,2,2,0,1},
-    {1,1,2,2,1,2,0,0,2,0,2,2,2,0,2,2,0,0,2,1,2,0,1,2,2,1,1,2,1,2,2,0,2,0,1,0,2,2,1,1,0,2,1,0,2,1,1,1},
-    {1,1,0,2,2,2,2,0,1,0,0,2,0,1,2,2,1,1,2,2,2,1,1,2,0,2,1,0,1,0,0,2,2,1,0,0,2,0,0,2,0,2,0,1,1,2,2,1},
-    {1,1,0,1,2,0,2,1,2,1,0,0,1,2,1,0,0,0,2,1,0,0,0,1,0,0,2,1,2,0,2,0,2,0,1,0,1,2,2,0,0,2,0,2,0,2,0,1},
-    {1,0,1,1,1,2,0,0,0,0,2,2,2,1,0,1,2,2,2,0,2,2,0,0,2,0,1,1,2,1,1,0,2,1,0,0,2,0,0,0,2,2,1,0,2,0,1,1},
-    {1,2,1,2,1,0,1,1,2,2,2,0,2,1,1,2,1,0,1,0,1,1,1,1,2,1,0,0,2,0,2,2,1,2,0,2,2,1,1,1,0,2,2,1,0,1,2,1},
-    {0,1,0,2,2,2,0,1,1,0,1,1,0,1,1,1,2,0,0,1,1,2,0,0,1,0,0,0,1,0,2,2,1,0,2,0,2,0,2,0,0,0,0,0,2,2,1,1},
-    {0,2,1,2,1,1,2,2,1,0,0,2,2,2,1,0,0,1,2,1,1,2,0,0,0,1,0,1,0,0,0,1,2,2,2,2,1,2,2,0,2,1,2,1,2,0,0,0},
-    {1,2,0,0,2,1,2,2,1,1,0,2,2,1,2,0,1,0,1,2,1,2,2,2,2,0,2,1,2,0,0,1,1,0,1,0,2,1,0,0,0,2,2,2,1,1,2,0},
-    {1,2,1,1,0,0,0,2,1,2,1,2,0,0,2,1,2,0,0,1,2,2,0,0,0,2,0,2,2,1,2,2,1,0,0,2,2,2,2,1,1,2,1,2,1,2,1,0},
-    {1,1,0,2,0,2,2,0,1,2,1,0,0,1,1,2,2,1,2,0,0,1,0,2,0,2,2,2,0,0,2,1,0,2,0,0,1,1,1,2,0,0,0,0,0,0,2,1},
-    {0,0,2,2,1,0,0,1,1,1,1,0,0,1,2,0,2,2,0,1,1,2,2,0,0,1,0,1,0,1,1,0,2,0,2,2,2,0,1,2,2,0,0,2,1,1,2,0},
-    {1,1,1,1,2,0,2,2,1,0,1,0,2,0,0,0,1,1,2,1,2,1,1,2,1,1,1,2,1,2,0,0,2,0,1,1,0,1,0,1,0,1,1,2,1,1,2,1},
-    {2,2,2,1,2,0,0,2,2,1,1,2,0,2,0,2,0,0,0,0,2,2,1,0,2,1,1,0,2,0,1,0,0,1,2,1,2,2,2,0,1,1,0,0,0,1,0,1},
-    {0,0,0,1,0,1,2,0,0,2,0,0,1,2,1,1,2,1,2,0,1,0,2,0,2,1,2,1,1,0,2,0,1,1,2,0,1,2,1,1,1,2,0,2,2,2,2,1},
-    {0,1,1,2,2,0,1,0,1,2,2,0,1,0,2,1,1,1,1,0,1,0,1,2,0,2,2,2,1,0,0,1,1,0,2,1,0,1,0,0,0,2,2,1,1,1,0,1},
-    {2,1,0,0,0,0,2,1,2,2,0,2,0,1,0,1,0,2,1,1,1,0,2,0,2,2,1,0,1,0,1,2,1,1,2,2,0,1,1,1,1,1,0,1,2,2,1,1},
-    {2,1,1,1,0,1,0,0,1,0,0,2,0,1,0,1,0,1,2,0,0,1,1,1,2,2,2,2,1,0,1,0,2,2,2,2,1,1,1,1,2,0,0,0,0,0,2,0},
-    {0,0,1,2,2,1,1,2,2,2,2,1,0,0,1,1,1,2,1,0,0,0,1,2,2,0,1,1,1,2,2,2,2,2,1,2,0,2,1,0,0,2,0,1,0,1,1,0},
-    {1,0,1,2,1,1,0,0,1,0,0,0,0,1,0,2,0,0,1,1,0,2,2,1,1,1,2,1,0,0,0,2,1,0,2,1,0,2,2,0,1,2,1,2,0,2,2,0},
-    {0,1,1,1,0,1,2,1,1,0,0,2,1,0,2,0,0,0,0,0,0,2,1,0,2,0,0,1,0,2,0,0,2,0,2,2,1,2,0,0,0,1,0,0,2,0,2,2},
-    {1,0,1,2,1,2,2,1,0,0,2,1,2,1,0,0,1,0,1,1,2,1,1,0,0,2,2,2,0,1,0,1,1,0,2,2,0,0,2,0,2,0,1,1,2,1,2,2}
+    {2,2,2,2,2,1,2,2,2,2,2,2},
+    {2,2,2,2,2,2,2,2,2,2,2,2},
+    {2,2,2,2,2,2,2,2,2,2,2,2},
+    {2,2,2,2,2,2,2,2,2,2,2,2},
+    {2,2,2,2,2,2,2,2,2,2,2,2},
+    {2,2,2,2,2,2,2,2,2,2,2,2}
 };
+
 
 Game::Game() : isRunning(false) {}
 
@@ -43,6 +30,18 @@ bool Game::Initialize(const char* title, int width, int height, bool fullScreen 
     if ((SDL_Init(SDL_INIT_VIDEO) || SDL_Init(SDL_INIT_AUDIO) || SDL_Init(SDL_INIT_TIMER) ) < 0) {
         return false;
     }
+
+    if (TTF_Init() == -1) {
+        std::cerr << "Failed to initialize SDL_ttf: " << TTF_GetError() << std::endl;
+        return false;
+    }
+
+    SDL_Init(SDL_INIT_AUDIO);
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+        std::cerr << "SDL_mixer error: " << Mix_GetError() << std::endl;
+        return 1;
+    }
+
     Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE;
     if (fullScreen) flags = SDL_WINDOW_FULLSCREEN;
     //Tạo ra cửa sổ (window)
@@ -58,9 +57,23 @@ bool Game::Initialize(const char* title, int width, int height, bool fullScreen 
         return false;
     }
 
+    TTF_Font* font = TTF_OpenFont("../assets/fonts/ArchivoBlack-Regular.ttf", 24);
+    setFont(font);
+
+    if (!font) {
+        std::cerr << "Failed to load font: " << TTF_GetError() << std::endl;
+        return 1;
+    }
+
+    Mix_Music* bgMusic = Mix_LoadMUS("../assets/music/a.mp3");
+    if (!bgMusic) {
+        std::cerr << "Failed to load music: " << Mix_GetError() << std::endl;
+        return 1;
+    }
+    Mix_PlayMusic(bgMusic, -1);
     //Muốn thay map nào thì để đường dẫn ảnh vào đây
-    map = new Map(renderer, "../assets/1 Tiles/battle.png", 32, 32, 48);
-    map->loadMap(level);
+    // map = new Map(renderer, "../assets/1 Tiles/battle.png", 32*4, 32*4, 12);
+    // map->loadMap(level);
 
     isRunning = true;
     return true;
@@ -79,12 +92,20 @@ void Game::Run() {
                 int mouseX = e.button.x;
                 int mouseY = e.button.y;
 
-                map->handleClick(mouseX, mouseY);
+                // map->handleClick(mouseX, mouseY);
             }
         } 
+        SDL_Color color = {255, 255, 255}; // white
+        SDL_Surface* surface = TTF_RenderText_Solid(font, "Hello, SDL_ttf!", color);
+        SDL_Texture* texture = SDL_CreateTextureFromSurface(renderer, surface);
+        SDL_FreeSurface(surface);
+
+        SDL_Rect dest = {100, 100, 300, 50};
         SDL_SetRenderDrawColor(renderer, 10, 12, 40, 255);
         SDL_RenderClear(renderer);
-        map->render();
+        SDL_RenderCopy(renderer, texture, nullptr, &dest);
+        
+        // map->render();
         SDL_RenderPresent(renderer);
         SDL_Delay(16);
     }
@@ -103,6 +124,22 @@ void Game::ShutDown() {
         SDL_DestroyWindow(window);
         window = nullptr;
     }
+    if (font) {
+        TTF_CloseFont(font);
+    }
+    if (bgMusic) {
+        Mix_FreeMusic(bgMusic);
+    }
+    Mix_CloseAudio();
+    TTF_Quit();
     IMG_Quit();
     SDL_Quit();
+}
+
+void Game::setFont(TTF_Font* currentFont) {
+    font = currentFont;
+}
+
+void Game::setBgMusic(Mix_Music* music) {
+    bgMusic = music;
 }

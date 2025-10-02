@@ -311,6 +311,8 @@ CMakeFiles/TowerDefense.dir/src/core/Game.cpp.obj: \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_version.h \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_image.h \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL.h \
+ C:/Users/Admin/TowerDefense2/include/SDL2/SDL_ttf.h \
+ C:/Users/Admin/TowerDefense2/include/SDL2/SDL_mixer.h \
  C:/Users/Admin/TowerDefense2/include/core/Game.hpp \
  C:/Users/Admin/TowerDefense2/include/core/Map.hpp \
  C:/msys64/ucrt64/include/c++/15.2.0/vector \

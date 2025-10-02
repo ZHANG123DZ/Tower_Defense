@@ -12,7 +12,7 @@ public:
     virtual ~Tile() = default;
     virtual void render(SDL_Renderer* renderer, SDL_Texture* tileSet) = 0;
     
-    virtual void onEnter() {std::cout<< id << "\n";}
+    virtual void onEnter() {std::cout<< id << " " << (int)(destRect.x/128) << " " << (int)(destRect.y/128) << "\n";}
     virtual void onLeave() {}
 
     int getId() const {return id;}
