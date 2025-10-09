@@ -200,6 +200,150 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/pages/Battlefields/Battlefields.obj: src/pages/Battlefields/Battlefields.cpp.obj
+.PHONY : src/pages/Battlefields/Battlefields.obj
+
+# target to build an object file
+src/pages/Battlefields/Battlefields.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.obj
+.PHONY : src/pages/Battlefields/Battlefields.cpp.obj
+
+src/pages/Battlefields/Battlefields.i: src/pages/Battlefields/Battlefields.cpp.i
+.PHONY : src/pages/Battlefields/Battlefields.i
+
+# target to preprocess a source file
+src/pages/Battlefields/Battlefields.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.i
+.PHONY : src/pages/Battlefields/Battlefields.cpp.i
+
+src/pages/Battlefields/Battlefields.s: src/pages/Battlefields/Battlefields.cpp.s
+.PHONY : src/pages/Battlefields/Battlefields.s
+
+# target to generate assembly for a file
+src/pages/Battlefields/Battlefields.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.s
+.PHONY : src/pages/Battlefields/Battlefields.cpp.s
+
+src/pages/Page.obj: src/pages/Page.cpp.obj
+.PHONY : src/pages/Page.obj
+
+# target to build an object file
+src/pages/Page.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.obj
+.PHONY : src/pages/Page.cpp.obj
+
+src/pages/Page.i: src/pages/Page.cpp.i
+.PHONY : src/pages/Page.i
+
+# target to preprocess a source file
+src/pages/Page.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.i
+.PHONY : src/pages/Page.cpp.i
+
+src/pages/Page.s: src/pages/Page.cpp.s
+.PHONY : src/pages/Page.s
+
+# target to generate assembly for a file
+src/pages/Page.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.s
+.PHONY : src/pages/Page.cpp.s
+
+src/pages/home/Home.obj: src/pages/home/Home.cpp.obj
+.PHONY : src/pages/home/Home.obj
+
+# target to build an object file
+src/pages/home/Home.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.obj
+.PHONY : src/pages/home/Home.cpp.obj
+
+src/pages/home/Home.i: src/pages/home/Home.cpp.i
+.PHONY : src/pages/home/Home.i
+
+# target to preprocess a source file
+src/pages/home/Home.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.i
+.PHONY : src/pages/home/Home.cpp.i
+
+src/pages/home/Home.s: src/pages/home/Home.cpp.s
+.PHONY : src/pages/home/Home.s
+
+# target to generate assembly for a file
+src/pages/home/Home.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.s
+.PHONY : src/pages/home/Home.cpp.s
+
+src/route/Route.obj: src/route/Route.cpp.obj
+.PHONY : src/route/Route.obj
+
+# target to build an object file
+src/route/Route.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/route/Route.cpp.obj
+.PHONY : src/route/Route.cpp.obj
+
+src/route/Route.i: src/route/Route.cpp.i
+.PHONY : src/route/Route.i
+
+# target to preprocess a source file
+src/route/Route.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/route/Route.cpp.i
+.PHONY : src/route/Route.cpp.i
+
+src/route/Route.s: src/route/Route.cpp.s
+.PHONY : src/route/Route.s
+
+# target to generate assembly for a file
+src/route/Route.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/route/Route.cpp.s
+.PHONY : src/route/Route.cpp.s
+
+src/ui/Button.obj: src/ui/Button.cpp.obj
+.PHONY : src/ui/Button.obj
+
+# target to build an object file
+src/ui/Button.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/ui/Button.cpp.obj
+.PHONY : src/ui/Button.cpp.obj
+
+src/ui/Button.i: src/ui/Button.cpp.i
+.PHONY : src/ui/Button.i
+
+# target to preprocess a source file
+src/ui/Button.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/ui/Button.cpp.i
+.PHONY : src/ui/Button.cpp.i
+
+src/ui/Button.s: src/ui/Button.cpp.s
+.PHONY : src/ui/Button.s
+
+# target to generate assembly for a file
+src/ui/Button.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/ui/Button.cpp.s
+.PHONY : src/ui/Button.cpp.s
+
+src/ui/Modal.obj: src/ui/Modal.cpp.obj
+.PHONY : src/ui/Modal.obj
+
+# target to build an object file
+src/ui/Modal.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/ui/Modal.cpp.obj
+.PHONY : src/ui/Modal.cpp.obj
+
+src/ui/Modal.i: src/ui/Modal.cpp.i
+.PHONY : src/ui/Modal.i
+
+# target to preprocess a source file
+src/ui/Modal.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/ui/Modal.cpp.i
+.PHONY : src/ui/Modal.cpp.i
+
+src/ui/Modal.s: src/ui/Modal.cpp.s
+.PHONY : src/ui/Modal.s
+
+# target to generate assembly for a file
+src/ui/Modal.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/ui/Modal.cpp.s
+.PHONY : src/ui/Modal.cpp.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -218,6 +362,24 @@ help:
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s
+	@echo ... src/pages/Battlefields/Battlefields.obj
+	@echo ... src/pages/Battlefields/Battlefields.i
+	@echo ... src/pages/Battlefields/Battlefields.s
+	@echo ... src/pages/Page.obj
+	@echo ... src/pages/Page.i
+	@echo ... src/pages/Page.s
+	@echo ... src/pages/home/Home.obj
+	@echo ... src/pages/home/Home.i
+	@echo ... src/pages/home/Home.s
+	@echo ... src/route/Route.obj
+	@echo ... src/route/Route.i
+	@echo ... src/route/Route.s
+	@echo ... src/ui/Button.obj
+	@echo ... src/ui/Button.i
+	@echo ... src/ui/Button.s
+	@echo ... src/ui/Modal.obj
+	@echo ... src/ui/Modal.i
+	@echo ... src/ui/Modal.s
 .PHONY : help
 
 

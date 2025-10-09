@@ -116,11 +116,107 @@ CMakeFiles/TowerDefense.dir/src/core/Map.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TowerDefense.dir/src/core/Map.cpp.s"
 	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Admin\TowerDefense2\src\core\Map.cpp -o CMakeFiles\TowerDefense.dir\src\core\Map.cpp.s
 
+CMakeFiles/TowerDefense.dir/src/ui/Modal.cpp.obj: CMakeFiles/TowerDefense.dir/flags.make
+CMakeFiles/TowerDefense.dir/src/ui/Modal.cpp.obj: CMakeFiles/TowerDefense.dir/includes_CXX.rsp
+CMakeFiles/TowerDefense.dir/src/ui/Modal.cpp.obj: C:/Users/Admin/TowerDefense2/src/ui/Modal.cpp
+CMakeFiles/TowerDefense.dir/src/ui/Modal.cpp.obj: CMakeFiles/TowerDefense.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Admin\TowerDefense2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/TowerDefense.dir/src/ui/Modal.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TowerDefense.dir/src/ui/Modal.cpp.obj -MF CMakeFiles\TowerDefense.dir\src\ui\Modal.cpp.obj.d -o CMakeFiles\TowerDefense.dir\src\ui\Modal.cpp.obj -c C:\Users\Admin\TowerDefense2\src\ui\Modal.cpp
+
+CMakeFiles/TowerDefense.dir/src/ui/Modal.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TowerDefense.dir/src/ui/Modal.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Admin\TowerDefense2\src\ui\Modal.cpp > CMakeFiles\TowerDefense.dir\src\ui\Modal.cpp.i
+
+CMakeFiles/TowerDefense.dir/src/ui/Modal.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TowerDefense.dir/src/ui/Modal.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Admin\TowerDefense2\src\ui\Modal.cpp -o CMakeFiles\TowerDefense.dir\src\ui\Modal.cpp.s
+
+CMakeFiles/TowerDefense.dir/src/ui/Button.cpp.obj: CMakeFiles/TowerDefense.dir/flags.make
+CMakeFiles/TowerDefense.dir/src/ui/Button.cpp.obj: CMakeFiles/TowerDefense.dir/includes_CXX.rsp
+CMakeFiles/TowerDefense.dir/src/ui/Button.cpp.obj: C:/Users/Admin/TowerDefense2/src/ui/Button.cpp
+CMakeFiles/TowerDefense.dir/src/ui/Button.cpp.obj: CMakeFiles/TowerDefense.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Admin\TowerDefense2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/TowerDefense.dir/src/ui/Button.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TowerDefense.dir/src/ui/Button.cpp.obj -MF CMakeFiles\TowerDefense.dir\src\ui\Button.cpp.obj.d -o CMakeFiles\TowerDefense.dir\src\ui\Button.cpp.obj -c C:\Users\Admin\TowerDefense2\src\ui\Button.cpp
+
+CMakeFiles/TowerDefense.dir/src/ui/Button.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TowerDefense.dir/src/ui/Button.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Admin\TowerDefense2\src\ui\Button.cpp > CMakeFiles\TowerDefense.dir\src\ui\Button.cpp.i
+
+CMakeFiles/TowerDefense.dir/src/ui/Button.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TowerDefense.dir/src/ui/Button.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Admin\TowerDefense2\src\ui\Button.cpp -o CMakeFiles\TowerDefense.dir\src\ui\Button.cpp.s
+
+CMakeFiles/TowerDefense.dir/src/route/Route.cpp.obj: CMakeFiles/TowerDefense.dir/flags.make
+CMakeFiles/TowerDefense.dir/src/route/Route.cpp.obj: CMakeFiles/TowerDefense.dir/includes_CXX.rsp
+CMakeFiles/TowerDefense.dir/src/route/Route.cpp.obj: C:/Users/Admin/TowerDefense2/src/route/Route.cpp
+CMakeFiles/TowerDefense.dir/src/route/Route.cpp.obj: CMakeFiles/TowerDefense.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Admin\TowerDefense2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/TowerDefense.dir/src/route/Route.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TowerDefense.dir/src/route/Route.cpp.obj -MF CMakeFiles\TowerDefense.dir\src\route\Route.cpp.obj.d -o CMakeFiles\TowerDefense.dir\src\route\Route.cpp.obj -c C:\Users\Admin\TowerDefense2\src\route\Route.cpp
+
+CMakeFiles/TowerDefense.dir/src/route/Route.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TowerDefense.dir/src/route/Route.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Admin\TowerDefense2\src\route\Route.cpp > CMakeFiles\TowerDefense.dir\src\route\Route.cpp.i
+
+CMakeFiles/TowerDefense.dir/src/route/Route.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TowerDefense.dir/src/route/Route.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Admin\TowerDefense2\src\route\Route.cpp -o CMakeFiles\TowerDefense.dir\src\route\Route.cpp.s
+
+CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.obj: CMakeFiles/TowerDefense.dir/flags.make
+CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.obj: CMakeFiles/TowerDefense.dir/includes_CXX.rsp
+CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.obj: C:/Users/Admin/TowerDefense2/src/pages/Page.cpp
+CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.obj: CMakeFiles/TowerDefense.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Admin\TowerDefense2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.obj -MF CMakeFiles\TowerDefense.dir\src\pages\Page.cpp.obj.d -o CMakeFiles\TowerDefense.dir\src\pages\Page.cpp.obj -c C:\Users\Admin\TowerDefense2\src\pages\Page.cpp
+
+CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Admin\TowerDefense2\src\pages\Page.cpp > CMakeFiles\TowerDefense.dir\src\pages\Page.cpp.i
+
+CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Admin\TowerDefense2\src\pages\Page.cpp -o CMakeFiles\TowerDefense.dir\src\pages\Page.cpp.s
+
+CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.obj: CMakeFiles/TowerDefense.dir/flags.make
+CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.obj: CMakeFiles/TowerDefense.dir/includes_CXX.rsp
+CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.obj: C:/Users/Admin/TowerDefense2/src/pages/home/Home.cpp
+CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.obj: CMakeFiles/TowerDefense.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Admin\TowerDefense2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.obj -MF CMakeFiles\TowerDefense.dir\src\pages\home\Home.cpp.obj.d -o CMakeFiles\TowerDefense.dir\src\pages\home\Home.cpp.obj -c C:\Users\Admin\TowerDefense2\src\pages\home\Home.cpp
+
+CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Admin\TowerDefense2\src\pages\home\Home.cpp > CMakeFiles\TowerDefense.dir\src\pages\home\Home.cpp.i
+
+CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Admin\TowerDefense2\src\pages\home\Home.cpp -o CMakeFiles\TowerDefense.dir\src\pages\home\Home.cpp.s
+
+CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.obj: CMakeFiles/TowerDefense.dir/flags.make
+CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.obj: CMakeFiles/TowerDefense.dir/includes_CXX.rsp
+CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.obj: C:/Users/Admin/TowerDefense2/src/pages/Battlefields/Battlefields.cpp
+CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.obj: CMakeFiles/TowerDefense.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Users\Admin\TowerDefense2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.obj"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.obj -MF CMakeFiles\TowerDefense.dir\src\pages\Battlefields\Battlefields.cpp.obj.d -o CMakeFiles\TowerDefense.dir\src\pages\Battlefields\Battlefields.cpp.obj -c C:\Users\Admin\TowerDefense2\src\pages\Battlefields\Battlefields.cpp
+
+CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.i"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\Admin\TowerDefense2\src\pages\Battlefields\Battlefields.cpp > CMakeFiles\TowerDefense.dir\src\pages\Battlefields\Battlefields.cpp.i
+
+CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.s"
+	C:\msys64\ucrt64\bin\g++.exe $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\Admin\TowerDefense2\src\pages\Battlefields\Battlefields.cpp -o CMakeFiles\TowerDefense.dir\src\pages\Battlefields\Battlefields.cpp.s
+
 # Object files for target TowerDefense
 TowerDefense_OBJECTS = \
 "CMakeFiles/TowerDefense.dir/src/main.cpp.obj" \
 "CMakeFiles/TowerDefense.dir/src/core/Game.cpp.obj" \
-"CMakeFiles/TowerDefense.dir/src/core/Map.cpp.obj"
+"CMakeFiles/TowerDefense.dir/src/core/Map.cpp.obj" \
+"CMakeFiles/TowerDefense.dir/src/ui/Modal.cpp.obj" \
+"CMakeFiles/TowerDefense.dir/src/ui/Button.cpp.obj" \
+"CMakeFiles/TowerDefense.dir/src/route/Route.cpp.obj" \
+"CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.obj" \
+"CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.obj" \
+"CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.obj"
 
 # External object files for target TowerDefense
 TowerDefense_EXTERNAL_OBJECTS =
@@ -128,13 +224,19 @@ TowerDefense_EXTERNAL_OBJECTS =
 TowerDefense.exe: CMakeFiles/TowerDefense.dir/src/main.cpp.obj
 TowerDefense.exe: CMakeFiles/TowerDefense.dir/src/core/Game.cpp.obj
 TowerDefense.exe: CMakeFiles/TowerDefense.dir/src/core/Map.cpp.obj
+TowerDefense.exe: CMakeFiles/TowerDefense.dir/src/ui/Modal.cpp.obj
+TowerDefense.exe: CMakeFiles/TowerDefense.dir/src/ui/Button.cpp.obj
+TowerDefense.exe: CMakeFiles/TowerDefense.dir/src/route/Route.cpp.obj
+TowerDefense.exe: CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.obj
+TowerDefense.exe: CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.obj
+TowerDefense.exe: CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.obj
 TowerDefense.exe: CMakeFiles/TowerDefense.dir/build.make
 TowerDefense.exe: CMakeFiles/TowerDefense.dir/linkLibs.rsp
 TowerDefense.exe: CMakeFiles/TowerDefense.dir/objects1.rsp
 TowerDefense.exe: CMakeFiles/TowerDefense.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\Admin\TowerDefense2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable TowerDefense.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Users\Admin\TowerDefense2\build\CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable TowerDefense.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\TowerDefense.dir\link.txt --verbose=$(VERBOSE)
-	"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/Admin/TowerDefense2/SDL2.dll C:/Users/Admin/TowerDefense2/SDL2_image.dll C:/Users/Admin/TowerDefense2/SDL2_ttf.dll C:/Users/Admin/TowerDefense2/SDL2_mixer.dll C:/Users/Admin/TowerDefense2/build
+	"C:\Program Files\CMake\bin\cmake.exe" -E copy_if_different C:/Users/Admin/TowerDefense2/SDL2.dll C:/Users/Admin/TowerDefense2/SDL2_image.dll C:/Users/Admin/TowerDefense2/SDL2_ttf.dll C:/Users/Admin/TowerDefense2/SDL2_mixer.dll C:/Users/Admin/TowerDefense2/SDL2_gfx.dll C:/Users/Admin/TowerDefense2/build
 
 # Rule to build all files generated by this target.
 CMakeFiles/TowerDefense.dir/build: TowerDefense.exe
