@@ -10,6 +10,8 @@ add_executable(${PROJECT_NAME}
     src/main.cpp
     src/core/Game.cpp
     src/core/Map.cpp
+    src/enemy/Enemy.cpp
+    src/enemy/EnemyManager.cpp
 )
 
 # Include & lib

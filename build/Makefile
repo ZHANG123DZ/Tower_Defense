@@ -56,10 +56,10 @@ RM = "C:\Program Files\CMake\bin\cmake.exe" -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\Admin\TowerDefense2
+CMAKE_SOURCE_DIR = C:\Users\Admin\OneDrive\Desktop\test\Tower_Defense
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\Admin\TowerDefense2\build
+CMAKE_BINARY_DIR = C:\Users\Admin\OneDrive\Desktop\test\Tower_Defense\build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -86,9 +86,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Admin\TowerDefense2\build\CMakeFiles C:\Users\Admin\TowerDefense2\build\\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Admin\OneDrive\Desktop\test\Tower_Defense\build\CMakeFiles C:\Users\Admin\OneDrive\Desktop\test\Tower_Defense\build\\CMakeFiles\progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Admin\TowerDefense2\build\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\Admin\OneDrive\Desktop\test\Tower_Defense\build\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -176,6 +176,54 @@ src/core/Map.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/core/Map.cpp.s
 .PHONY : src/core/Map.cpp.s
 
+src/enemy/Enemy.obj: src/enemy/Enemy.cpp.obj
+.PHONY : src/enemy/Enemy.obj
+
+# target to build an object file
+src/enemy/Enemy.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/enemy/Enemy.cpp.obj
+.PHONY : src/enemy/Enemy.cpp.obj
+
+src/enemy/Enemy.i: src/enemy/Enemy.cpp.i
+.PHONY : src/enemy/Enemy.i
+
+# target to preprocess a source file
+src/enemy/Enemy.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/enemy/Enemy.cpp.i
+.PHONY : src/enemy/Enemy.cpp.i
+
+src/enemy/Enemy.s: src/enemy/Enemy.cpp.s
+.PHONY : src/enemy/Enemy.s
+
+# target to generate assembly for a file
+src/enemy/Enemy.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/enemy/Enemy.cpp.s
+.PHONY : src/enemy/Enemy.cpp.s
+
+src/enemy/EnemyManager.obj: src/enemy/EnemyManager.cpp.obj
+.PHONY : src/enemy/EnemyManager.obj
+
+# target to build an object file
+src/enemy/EnemyManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/enemy/EnemyManager.cpp.obj
+.PHONY : src/enemy/EnemyManager.cpp.obj
+
+src/enemy/EnemyManager.i: src/enemy/EnemyManager.cpp.i
+.PHONY : src/enemy/EnemyManager.i
+
+# target to preprocess a source file
+src/enemy/EnemyManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/enemy/EnemyManager.cpp.i
+.PHONY : src/enemy/EnemyManager.cpp.i
+
+src/enemy/EnemyManager.s: src/enemy/EnemyManager.cpp.s
+.PHONY : src/enemy/EnemyManager.s
+
+# target to generate assembly for a file
+src/enemy/EnemyManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/enemy/EnemyManager.cpp.s
+.PHONY : src/enemy/EnemyManager.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -215,6 +263,12 @@ help:
 	@echo ... src/core/Map.obj
 	@echo ... src/core/Map.i
 	@echo ... src/core/Map.s
+	@echo ... src/enemy/Enemy.obj
+	@echo ... src/enemy/Enemy.i
+	@echo ... src/enemy/Enemy.s
+	@echo ... src/enemy/EnemyManager.obj
+	@echo ... src/enemy/EnemyManager.i
+	@echo ... src/enemy/EnemyManager.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s
