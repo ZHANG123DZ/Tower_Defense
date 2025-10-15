@@ -10,7 +10,9 @@
 
 Map* map = nullptr;
 EnemyManager* enemyManager = nullptr;
-
+// tổng hp của thành
+//int baseHealth = 20;
+int lastenemyReachedEndCount = 0;
 std::vector<std::vector<int>> level = {
     {2,2,2,2,2,1,2,2,2,2,2,2},
     {2,2,2,2,2,2,2,2,2,2,2,2},
@@ -77,7 +79,7 @@ bool Game::Initialize(const char* title, int width, int height, bool fullScreen)
     isRunning = true;
     return true;
 }
-
+/// ////
 void Game::Run() {
     SDL_Event e;
     while (isRunning) {
@@ -99,8 +101,29 @@ void Game::Run() {
 
         map->render();
         enemyManager->update(0.016f);
+        if(enemyManager->isGameOver()){
+            std::cout << "GAME OVER! You Lose!" << std::endl;
+            SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_INFORMATION, "Game Over", "Your base has been destroyed!", window);
+            isRunning = false; // Kết thúc game
+        }
+        SDL_SetRenderDrawColor(renderer, 10, 12, 40, 255);
+        SDL_RenderClear(renderer);
         enemyManager->render();
-
+        //Thanh máu của thành
+        int baseHP = enemyManager->getbaseHP();
+        int maxHP = 20; // Giả sử max HP là 20
+        int barWidth = 200;
+        int barHeight = 20;
+        int x = 800 - barWidth - 20;//
+        int y = 20;
+        SDL_Rect border = { x - 2, y - 2, barWidth + 4, barHeight + 4 };
+        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_RenderFillRect(renderer, &border);
+        // máu còn lại
+        SDL_Rect hpRect = {x , y , static_cast<int>((barWidth * baseHP) / (float)maxHP) , barHeight};
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        SDL_RenderFillRect(renderer, &hpRect);
+        //hiển thị frame
         SDL_RenderPresent(renderer);
         SDL_Delay(16);
     }

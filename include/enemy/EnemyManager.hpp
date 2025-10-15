@@ -27,7 +27,7 @@ private:
     Wave currentWave;
     int totalSpawned;
     int enemiesReachedEnd;
-
+    int baseHP; // tổng hp của thành
 public:
     EnemyManager(SDL_Renderer* renderer, const std::vector<SDL_Point>& enemyPath);
     ~EnemyManager();
@@ -47,8 +47,9 @@ public:
     int getTotalSpawnedCount() const { return totalSpawned; }
     int getCurrentWaveNumber() const { return currentWaveIndex + 1; }
     bool isSpawning() const { return spawning; }
-
+    int getbaseHP() const;
+    bool isGameOver() const;
     void damageEnemyAt(SDL_Point position, float damage, float radius = 30.0f);
-
+    int getenemiesReachedEnd() const;
     void setEnemyTexture(SDL_Texture* tex);
 };
