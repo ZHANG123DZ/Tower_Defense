@@ -41,9 +41,14 @@ bool EnemyManager::allEnemiesDead() const {
 }
 
 void EnemyManager::spawnEnemy(float hp, float speed) {
-    enemies.push_back(std::make_unique<Enemy>(renderer, enemyPath, hp, speed));
+    auto enemy = std::make_unique<Enemy>(renderer, enemyPath, hp, speed);
+    if (enemyTexture) { 
+        enemy->setTexture(enemyTexture);  //Gán texture cho quái
+    }
+    enemies.push_back(std::move(enemy));
     totalSpawned++;
 }
+
 
 void EnemyManager::removeDeadEnemies() {
     enemies.erase(
@@ -99,4 +104,7 @@ void EnemyManager::damageEnemyAt(SDL_Point position, float damage, float radius)
             e->takeDamage(damage);
         }
     }
+}
+void EnemyManager::setEnemyTexture(SDL_Texture* tex) {
+    enemyTexture = tex;
 }

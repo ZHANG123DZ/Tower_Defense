@@ -14,6 +14,7 @@ struct Wave {
 class EnemyManager {
 private:
     SDL_Renderer* renderer;
+    SDL_Texture* enemyTexture; // Texture dùng chung cho các quái
     std::vector<SDL_Point> enemyPath;
     std::vector<std::unique_ptr<Enemy>> enemies;
 
@@ -48,4 +49,6 @@ public:
     bool isSpawning() const { return spawning; }
 
     void damageEnemyAt(SDL_Point position, float damage, float radius = 30.0f);
+
+    void setEnemyTexture(SDL_Texture* tex);
 };

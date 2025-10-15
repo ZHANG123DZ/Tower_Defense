@@ -34,10 +34,10 @@ bool Game::Initialize(const char* title, int width, int height, bool fullScreen)
         return false;
     }
 
-    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-        std::cerr << "SDL_mixer error: " << Mix_GetError() << std::endl;
-        return false;
-    }
+    // if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+    //     std::cerr << "SDL_mixer error: " << Mix_GetError() << std::endl;
+    //     return false;
+    // }
 
     Uint32 flags = SDL_WINDOW_SHOWN | SDL_WINDOW_RESIZABLE;
     if (fullScreen) flags = SDL_WINDOW_FULLSCREEN;
@@ -49,8 +49,8 @@ bool Game::Initialize(const char* title, int width, int height, bool fullScreen)
         return false;
     }
 
-    Mix_Music* bgMusic = Mix_LoadMUS("../assets/music/a.mp3");
-    if (bgMusic) Mix_PlayMusic(bgMusic, -1);
+    // Mix_Music* bgMusic = Mix_LoadMUS("../assets/music/a.mp3");
+    // if (bgMusic) Mix_PlayMusic(bgMusic, -1);
 
     // Tạo map & enemy manager
     map = new Map(renderer, "../assets/1 Tiles/battle.jpg", 32 * 4, 32 * 4, 12);
@@ -64,7 +64,16 @@ bool Game::Initialize(const char* title, int width, int height, bool fullScreen)
     enemyManager->startWave({15, 0.6f, 200.0f, 100.0f});
     enemyManager->startWave({20, 0.5f, 250.0f, 110.0f});
     map->loadMap(level);
-
+    SDL_Surface* enemySurface = IMG_Load("../assets/1 Tiles/download.png");
+    if(!enemySurface) {
+        std::cerr << "Failed to load enemy image: " << IMG_GetError() << std::endl;
+        return false;
+    }
+    else {
+        SDL_Texture* enemyTexture = SDL_CreateTextureFromSurface(renderer, enemySurface);
+        SDL_FreeSurface(enemySurface);
+        enemyManager->setEnemyTexture(enemyTexture); //  Hàm này ta sẽ thêm vào EnemyManager
+    }
     isRunning = true;
     return true;
 }

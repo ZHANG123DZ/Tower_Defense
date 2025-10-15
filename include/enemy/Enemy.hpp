@@ -15,9 +15,11 @@ public:
     SDL_Point getPosition() const { return currentPosition; }
     float getCurrentHP() const { return currentHP; }
     float getMaxHP() const { return maxHP; }
+    void setTexture(SDL_Texture*tex);
+    
 private:
     SDL_Renderer* renderer;
-    SDL_Texture* texture;
+    SDL_Texture* texture = nullptr;// ảnh quái
     float maxHP;
     SDL_Rect rect;
     float currentHP;
