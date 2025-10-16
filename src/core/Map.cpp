@@ -28,6 +28,14 @@ Map::~Map() {
     }
 }
 
+Tile* Map::getTileAt(int x, int y) {
+    int col = x / tileWidth;
+    int row = y / tileHeight;
+    if (row < 0 || row >= rows || col < 0 || col >= cols) return nullptr;
+    if (!tiles[row][col]) return nullptr;
+    return tiles[row][col].get();
+}
+
 void Map::loadMap(const std::vector<std::vector<int>>& data) {
     mapData = data;
     rows = (int)mapData.size();

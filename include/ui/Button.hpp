@@ -1,5 +1,4 @@
 #pragma once
-
 #include <iostream>
 #include <functional>
 #include <string>
@@ -11,7 +10,7 @@ struct ButtonStyleConfig {
     SDL_Color borderColor = {0, 0, 0, 255};
     SDL_Color textColor = {255, 255, 255, 255};
     SDL_Color bgColor = {0, 0, 255, 255};
-    TTF_Font* font = TTF_OpenFont("../assets/fonts/Roboto-Regular.ttf", 24);
+    TTF_Font* font = nullptr;
     std::string text = "";
     int borderRadius = 0;
 };
@@ -20,8 +19,10 @@ class Button {
 private:
     int x, y, width, height;
     SDL_Rect rect;
+    SDL_Rect srcRect;
+    bool hasSrcRect = false;
+    int borderRadius = 0;
 
-    int borderRadius;
     SDL_Color borderColor, textColor, bgColor;
     std::string text;
     TTF_Font* font = nullptr;
@@ -39,6 +40,12 @@ private:
 
 public:
     Button(SDL_Renderer* renderer, int x, int y, int w, int h, const std::string& text, TTF_Font* font);
+    ~Button();
+
+    int getX() const { return x; }
+    int getY() const { return y; }
+    int getWidth() const { return width; }
+    int getHeight() const { return height; }
 
     void applyStyle(const ButtonStyleConfig& config);
 
@@ -47,10 +54,10 @@ public:
 
     void setText(const std::string& newText);
     void setFont(TTF_Font* newFont);
+
     void setBackgroundTexture(SDL_Texture* bgTex);
+    void setBackgroundTexture(SDL_Texture* bgTex, const SDL_Rect& srcRect);
 
     void handleEvent(const SDL_Event& e);
     void render();
-
-    ~Button();
 };

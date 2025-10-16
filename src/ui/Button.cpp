@@ -7,21 +7,17 @@
 #include <algorithm>
 
 Button::Button(SDL_Renderer* renderer, int x, int y, int w, int h, const std::string& text, TTF_Font* font)
-    : renderer(renderer), x(x), y(y), width(w), height(h), text(text), font(font)
+    : renderer(renderer), x(x), y(y), width(w), height(h), text(text), font(font),
+      backgroundTexture(nullptr), textTexture(nullptr), hasSrcRect(false)
 {
     rect = { x, y, w, h };
     updateTextTexture();
 }
 
-
 Button::~Button() {
     if (textTexture) {
         SDL_DestroyTexture(textTexture);
         textTexture = nullptr;
-    }
-    if (backgroundTexture) {
-        SDL_DestroyTexture(backgroundTexture);
-        backgroundTexture = nullptr;
     }
 }
 
@@ -46,8 +42,7 @@ void Button::setOnHover(std::function<void()> callback) {
 }
 
 void Button::handleEvent(const SDL_Event& e) {
-    int mx, my;
-    bool inside = false;
+    int mx = 0, my = 0;
 
     if (e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN) {
         if (e.type == SDL_MOUSEMOTION) {
@@ -58,8 +53,8 @@ void Button::handleEvent(const SDL_Event& e) {
             my = e.button.y;
         }
 
-        inside = (mx >= rect.x && mx <= rect.x + rect.w &&
-                  my >= rect.y && my <= rect.y + rect.h);
+        bool inside = (mx >= rect.x && mx <= rect.x + rect.w &&
+                       my >= rect.y && my <= rect.y + rect.h);
 
         isHovered = inside;
 
@@ -67,7 +62,8 @@ void Button::handleEvent(const SDL_Event& e) {
             if (e.type == SDL_MOUSEMOTION && onHoverCallback) {
                 onHoverCallback();
             }
-            if (e.type == SDL_MOUSEBUTTONDOWN && e.button.button == SDL_BUTTON_LEFT && onClickCallback) {
+            if (e.type == SDL_MOUSEBUTTONDOWN &&
+                e.button.button == SDL_BUTTON_LEFT && onClickCallback) {
                 onClickCallback();
             }
         }
@@ -75,48 +71,54 @@ void Button::handleEvent(const SDL_Event& e) {
 }
 
 void Button::render() {
-    rect = { x, y, width, height };
+    SDL_Rect dstRect = { x, y, width, height };
 
-    SDL_Color drawColor = isHovered
-        ? SDL_Color{
-            static_cast<Uint8>(std::max(0, bgColor.r - 40)),
-            static_cast<Uint8>(std::max(0, bgColor.g - 40)),
-            static_cast<Uint8>(std::max(0, bgColor.b - 40)),
-            bgColor.a
+    if (backgroundTexture) {
+        SDL_SetTextureBlendMode(backgroundTexture, SDL_BLENDMODE_BLEND);
+
+        if (hasSrcRect) {
+            SDL_RenderCopy(renderer, backgroundTexture, &srcRect, &dstRect);
+        } else {
+            SDL_RenderCopy(renderer, backgroundTexture, nullptr, &dstRect);
         }
-        : bgColor;
-
-    if (borderRadius > 0) {
-        roundedBoxRGBA(renderer,
-                       rect.x, rect.y,
-                       rect.x + rect.w, rect.y + rect.h,
-                       borderRadius,
-                       drawColor.r, drawColor.g, drawColor.b, drawColor.a);
-
-        roundedRectangleRGBA(renderer,
-                             rect.x, rect.y,
-                             rect.x + rect.w, rect.y + rect.h,
-                             borderRadius,
-                             borderColor.r, borderColor.g, borderColor.b, borderColor.a);
     } else {
-        SDL_SetRenderDrawColor(renderer, drawColor.r, drawColor.g, drawColor.b, drawColor.a);
-        SDL_RenderFillRect(renderer, &rect);
-
-        SDL_SetRenderDrawColor(renderer, borderColor.r, borderColor.g, borderColor.b, borderColor.a);
-        SDL_RenderDrawRect(renderer, &rect);
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+        SDL_SetRenderDrawColor(renderer, bgColor.r, bgColor.g, bgColor.b, bgColor.a);
+        SDL_RenderFillRect(renderer, &dstRect);
     }
 
+    // Vẽ viền
+    if (borderRadius > 0) {
+        roundedRectangleRGBA(renderer,
+            dstRect.x, dstRect.y,
+            dstRect.x + dstRect.w, dstRect.y + dstRect.h,
+            borderRadius,
+            borderColor.r, borderColor.g, borderColor.b, borderColor.a
+        );
+    } else {
+        SDL_SetRenderDrawColor(renderer, borderColor.r, borderColor.g, borderColor.b, borderColor.a);
+        SDL_RenderDrawRect(renderer, &dstRect);
+    }
+
+    // Vẽ text
     if (textTexture) {
         int textW = 0, textH = 0;
         SDL_QueryTexture(textTexture, nullptr, nullptr, &textW, &textH);
 
-        SDL_Rect dstRect = {
-            rect.x + (rect.w - textW) / 2,
-            rect.y + (rect.h - textH) / 2,
+        SDL_Rect dstText = {
+            dstRect.x + (dstRect.w - textW) / 2,
+            dstRect.y + (dstRect.h - textH) / 2,
             textW, textH
         };
 
-        SDL_RenderCopy(renderer, textTexture, nullptr, &dstRect);
+        SDL_RenderCopy(renderer, textTexture, nullptr, &dstText);
+    }
+
+    // Hiệu ứng hover overlay nhẹ
+    if (isHovered) {
+        SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 40); // overlay mờ trắng
+        SDL_RenderFillRect(renderer, &dstRect);
     }
 }
 
@@ -131,10 +133,16 @@ void Button::setFont(TTF_Font* newFont) {
 }
 
 void Button::setBackgroundTexture(SDL_Texture* bgTex) {
-    if (backgroundTexture) {
-        SDL_DestroyTexture(backgroundTexture);
-    }
     backgroundTexture = bgTex;
+    SDL_SetTextureBlendMode(backgroundTexture, SDL_BLENDMODE_BLEND);
+    hasSrcRect = false;
+}
+
+void Button::setBackgroundTexture(SDL_Texture* bgTex, const SDL_Rect& srcRect) {
+    backgroundTexture = bgTex;
+    SDL_SetTextureBlendMode(backgroundTexture, SDL_BLENDMODE_BLEND);
+    this->srcRect = srcRect;
+    hasSrcRect = true;
 }
 
 void Button::updateTextTexture() {

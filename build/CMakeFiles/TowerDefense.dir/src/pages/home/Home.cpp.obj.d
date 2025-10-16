@@ -310,6 +310,7 @@ CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.obj: \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_version.h \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_image.h \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL.h \
+ C:/Users/Admin/TowerDefense2/include/SDL2/SDL_mixer.h \
  C:/Users/Admin/TowerDefense2/include/route/Route.hpp \
  C:/Users/Admin/TowerDefense2/include/pages/Page.hpp \
  C:/Users/Admin/TowerDefense2/include/ui/Button.hpp \

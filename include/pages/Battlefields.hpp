@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 #include <route/Route.hpp>
 #include <pages/Page.hpp>
 #include <ui/Button.hpp>
@@ -12,8 +13,9 @@ private:
     Route& route; 
     SDL_Texture* texture;
     SDL_Rect* rect;
-    Button* startButton;
-    Button* profileButton;
+    Button* backButton;
+    std::vector<Button*> battles;
+    Mix_Music* bgMusic;
 public:
     Battlefields(Route& route);
     ~Battlefields();

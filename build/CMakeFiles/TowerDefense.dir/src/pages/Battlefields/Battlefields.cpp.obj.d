@@ -310,6 +310,7 @@ CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.obj: \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_version.h \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_image.h \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL.h \
+ C:/Users/Admin/TowerDefense2/include/SDL2/SDL_mixer.h \
  C:/Users/Admin/TowerDefense2/include/route/Route.hpp \
  C:/Users/Admin/TowerDefense2/include/pages/Page.hpp \
  C:/Users/Admin/TowerDefense2/include/ui/Button.hpp \
@@ -331,4 +332,30 @@ CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.2.0/array \
  C:/msys64/ucrt64/include/c++/15.2.0/compare \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_ttf.h \
- C:/Users/Admin/TowerDefense2/include/pages/Home.hpp
+ C:/Users/Admin/TowerDefense2/include/pages/Home.hpp \
+ C:/Users/Admin/TowerDefense2/include/pages/Battle.hpp \
+ C:/Users/Admin/TowerDefense2/include/tower/TowerManager.hpp \
+ C:/Users/Admin/TowerDefense2/include/tower/Tower.hpp \
+ C:/msys64/ucrt64/include/string.h \
+ C:/msys64/ucrt64/include/sec_api/string_s.h \
+ C:/Users/Admin/TowerDefense2/include/tower/Arrow.hpp \
+ C:/Users/Admin/TowerDefense2/include/enemy/Enemy.hpp \
+ C:/Users/Admin/TowerDefense2/include/tower/ArrowManager.hpp \
+ C:/Users/Admin/TowerDefense2/include/core/Map.hpp \
+ C:/msys64/ucrt64/include/c++/15.2.0/memory \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_tempbuf.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_raw_storage_iter.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/align.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/unique_ptr.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/shared_ptr.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/shared_ptr_base.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/allocated_ptr.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/ext/concurrence.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/shared_ptr_atomic.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/atomic_base.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/atomic_lockfree_defines.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/backward/auto_ptr.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/pstl/glue_memory_defs.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/pstl/execution_defs.h \
+ C:/Users/Admin/TowerDefense2/include/tile/Tile.hpp \
+ C:/Users/Admin/TowerDefense2/include/enemy/EnemyManager.hpp

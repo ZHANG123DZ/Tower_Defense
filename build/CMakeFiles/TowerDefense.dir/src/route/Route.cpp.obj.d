@@ -315,6 +315,7 @@ CMakeFiles/TowerDefense.dir/src/route/Route.cpp.obj: \
  C:/Users/Admin/TowerDefense2/include/pages/Home.hpp \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_image.h \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL.h \
+ C:/Users/Admin/TowerDefense2/include/SDL2/SDL_mixer.h \
  C:/Users/Admin/TowerDefense2/include/ui/Button.hpp \
  C:/msys64/ucrt64/include/c++/15.2.0/functional \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/std_function.h \

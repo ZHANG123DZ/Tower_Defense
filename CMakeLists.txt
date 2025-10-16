@@ -13,6 +13,13 @@ add_executable(${PROJECT_NAME}
     src/route/Route.cpp
     src/pages/home/Home.cpp
     src/pages/Battlefields/Battlefields.cpp
+    src/pages/Battle/Battle.cpp
+    src/tower/TowerManager.cpp
+    src/tower/Tower.cpp
+    src/enemy/EnemyManager.cpp
+    src/enemy/Enemy.cpp
+    src/tower/Arrow.cpp
+    src/tower/ArrowManager.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/include)

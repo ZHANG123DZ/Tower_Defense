@@ -3,6 +3,7 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_mixer.h>
 #include <route/Route.hpp>
 #include <pages/Page.hpp>
 #include <ui/Button.hpp>
@@ -13,7 +14,8 @@ private:
     SDL_Texture* texture;
     SDL_Rect* rect;
     Button* startButton;
-    Button* profileButton;
+    Button* quitButton;
+    Mix_Music* bgMusic; 
 public:
     Home(Route& route);
     ~Home();

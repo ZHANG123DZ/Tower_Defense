@@ -16,6 +16,7 @@ public:
     void loadMap(const std::vector<std::vector<int>>& mapData);
     void render();
     void handleClick(int mouseX, int mouseY);
+    Tile* getTileAt(int x, int y);
 private:
     SDL_Renderer* renderer;
     SDL_Texture* tileSet;

@@ -176,6 +176,54 @@ src/core/Map.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/core/Map.cpp.s
 .PHONY : src/core/Map.cpp.s
 
+src/enemy/Enemy.obj: src/enemy/Enemy.cpp.obj
+.PHONY : src/enemy/Enemy.obj
+
+# target to build an object file
+src/enemy/Enemy.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/enemy/Enemy.cpp.obj
+.PHONY : src/enemy/Enemy.cpp.obj
+
+src/enemy/Enemy.i: src/enemy/Enemy.cpp.i
+.PHONY : src/enemy/Enemy.i
+
+# target to preprocess a source file
+src/enemy/Enemy.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/enemy/Enemy.cpp.i
+.PHONY : src/enemy/Enemy.cpp.i
+
+src/enemy/Enemy.s: src/enemy/Enemy.cpp.s
+.PHONY : src/enemy/Enemy.s
+
+# target to generate assembly for a file
+src/enemy/Enemy.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/enemy/Enemy.cpp.s
+.PHONY : src/enemy/Enemy.cpp.s
+
+src/enemy/EnemyManager.obj: src/enemy/EnemyManager.cpp.obj
+.PHONY : src/enemy/EnemyManager.obj
+
+# target to build an object file
+src/enemy/EnemyManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/enemy/EnemyManager.cpp.obj
+.PHONY : src/enemy/EnemyManager.cpp.obj
+
+src/enemy/EnemyManager.i: src/enemy/EnemyManager.cpp.i
+.PHONY : src/enemy/EnemyManager.i
+
+# target to preprocess a source file
+src/enemy/EnemyManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/enemy/EnemyManager.cpp.i
+.PHONY : src/enemy/EnemyManager.cpp.i
+
+src/enemy/EnemyManager.s: src/enemy/EnemyManager.cpp.s
+.PHONY : src/enemy/EnemyManager.s
+
+# target to generate assembly for a file
+src/enemy/EnemyManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/enemy/EnemyManager.cpp.s
+.PHONY : src/enemy/EnemyManager.cpp.s
+
 src/main.obj: src/main.cpp.obj
 .PHONY : src/main.obj
 
@@ -200,6 +248,30 @@ src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/pages/Battle/Battle.obj: src/pages/Battle/Battle.cpp.obj
+.PHONY : src/pages/Battle/Battle.obj
+
+# target to build an object file
+src/pages/Battle/Battle.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/Battle/Battle.cpp.obj
+.PHONY : src/pages/Battle/Battle.cpp.obj
+
+src/pages/Battle/Battle.i: src/pages/Battle/Battle.cpp.i
+.PHONY : src/pages/Battle/Battle.i
+
+# target to preprocess a source file
+src/pages/Battle/Battle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/Battle/Battle.cpp.i
+.PHONY : src/pages/Battle/Battle.cpp.i
+
+src/pages/Battle/Battle.s: src/pages/Battle/Battle.cpp.s
+.PHONY : src/pages/Battle/Battle.s
+
+# target to generate assembly for a file
+src/pages/Battle/Battle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/Battle/Battle.cpp.s
+.PHONY : src/pages/Battle/Battle.cpp.s
+
 src/pages/Battlefields/Battlefields.obj: src/pages/Battlefields/Battlefields.cpp.obj
 .PHONY : src/pages/Battlefields/Battlefields.obj
 
@@ -223,30 +295,6 @@ src/pages/Battlefields/Battlefields.s: src/pages/Battlefields/Battlefields.cpp.s
 src/pages/Battlefields/Battlefields.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.s
 .PHONY : src/pages/Battlefields/Battlefields.cpp.s
-
-src/pages/Page.obj: src/pages/Page.cpp.obj
-.PHONY : src/pages/Page.obj
-
-# target to build an object file
-src/pages/Page.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.obj
-.PHONY : src/pages/Page.cpp.obj
-
-src/pages/Page.i: src/pages/Page.cpp.i
-.PHONY : src/pages/Page.i
-
-# target to preprocess a source file
-src/pages/Page.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.i
-.PHONY : src/pages/Page.cpp.i
-
-src/pages/Page.s: src/pages/Page.cpp.s
-.PHONY : src/pages/Page.s
-
-# target to generate assembly for a file
-src/pages/Page.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/Page.cpp.s
-.PHONY : src/pages/Page.cpp.s
 
 src/pages/home/Home.obj: src/pages/home/Home.cpp.obj
 .PHONY : src/pages/home/Home.obj
@@ -295,6 +343,102 @@ src/route/Route.s: src/route/Route.cpp.s
 src/route/Route.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/route/Route.cpp.s
 .PHONY : src/route/Route.cpp.s
+
+src/tower/Arrow.obj: src/tower/Arrow.cpp.obj
+.PHONY : src/tower/Arrow.obj
+
+# target to build an object file
+src/tower/Arrow.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/tower/Arrow.cpp.obj
+.PHONY : src/tower/Arrow.cpp.obj
+
+src/tower/Arrow.i: src/tower/Arrow.cpp.i
+.PHONY : src/tower/Arrow.i
+
+# target to preprocess a source file
+src/tower/Arrow.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/tower/Arrow.cpp.i
+.PHONY : src/tower/Arrow.cpp.i
+
+src/tower/Arrow.s: src/tower/Arrow.cpp.s
+.PHONY : src/tower/Arrow.s
+
+# target to generate assembly for a file
+src/tower/Arrow.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/tower/Arrow.cpp.s
+.PHONY : src/tower/Arrow.cpp.s
+
+src/tower/ArrowManager.obj: src/tower/ArrowManager.cpp.obj
+.PHONY : src/tower/ArrowManager.obj
+
+# target to build an object file
+src/tower/ArrowManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/tower/ArrowManager.cpp.obj
+.PHONY : src/tower/ArrowManager.cpp.obj
+
+src/tower/ArrowManager.i: src/tower/ArrowManager.cpp.i
+.PHONY : src/tower/ArrowManager.i
+
+# target to preprocess a source file
+src/tower/ArrowManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/tower/ArrowManager.cpp.i
+.PHONY : src/tower/ArrowManager.cpp.i
+
+src/tower/ArrowManager.s: src/tower/ArrowManager.cpp.s
+.PHONY : src/tower/ArrowManager.s
+
+# target to generate assembly for a file
+src/tower/ArrowManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/tower/ArrowManager.cpp.s
+.PHONY : src/tower/ArrowManager.cpp.s
+
+src/tower/Tower.obj: src/tower/Tower.cpp.obj
+.PHONY : src/tower/Tower.obj
+
+# target to build an object file
+src/tower/Tower.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/tower/Tower.cpp.obj
+.PHONY : src/tower/Tower.cpp.obj
+
+src/tower/Tower.i: src/tower/Tower.cpp.i
+.PHONY : src/tower/Tower.i
+
+# target to preprocess a source file
+src/tower/Tower.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/tower/Tower.cpp.i
+.PHONY : src/tower/Tower.cpp.i
+
+src/tower/Tower.s: src/tower/Tower.cpp.s
+.PHONY : src/tower/Tower.s
+
+# target to generate assembly for a file
+src/tower/Tower.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/tower/Tower.cpp.s
+.PHONY : src/tower/Tower.cpp.s
+
+src/tower/TowerManager.obj: src/tower/TowerManager.cpp.obj
+.PHONY : src/tower/TowerManager.obj
+
+# target to build an object file
+src/tower/TowerManager.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/tower/TowerManager.cpp.obj
+.PHONY : src/tower/TowerManager.cpp.obj
+
+src/tower/TowerManager.i: src/tower/TowerManager.cpp.i
+.PHONY : src/tower/TowerManager.i
+
+# target to preprocess a source file
+src/tower/TowerManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/tower/TowerManager.cpp.i
+.PHONY : src/tower/TowerManager.cpp.i
+
+src/tower/TowerManager.s: src/tower/TowerManager.cpp.s
+.PHONY : src/tower/TowerManager.s
+
+# target to generate assembly for a file
+src/tower/TowerManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/tower/TowerManager.cpp.s
+.PHONY : src/tower/TowerManager.cpp.s
 
 src/ui/Button.obj: src/ui/Button.cpp.obj
 .PHONY : src/ui/Button.obj
@@ -359,21 +503,39 @@ help:
 	@echo ... src/core/Map.obj
 	@echo ... src/core/Map.i
 	@echo ... src/core/Map.s
+	@echo ... src/enemy/Enemy.obj
+	@echo ... src/enemy/Enemy.i
+	@echo ... src/enemy/Enemy.s
+	@echo ... src/enemy/EnemyManager.obj
+	@echo ... src/enemy/EnemyManager.i
+	@echo ... src/enemy/EnemyManager.s
 	@echo ... src/main.obj
 	@echo ... src/main.i
 	@echo ... src/main.s
+	@echo ... src/pages/Battle/Battle.obj
+	@echo ... src/pages/Battle/Battle.i
+	@echo ... src/pages/Battle/Battle.s
 	@echo ... src/pages/Battlefields/Battlefields.obj
 	@echo ... src/pages/Battlefields/Battlefields.i
 	@echo ... src/pages/Battlefields/Battlefields.s
-	@echo ... src/pages/Page.obj
-	@echo ... src/pages/Page.i
-	@echo ... src/pages/Page.s
 	@echo ... src/pages/home/Home.obj
 	@echo ... src/pages/home/Home.i
 	@echo ... src/pages/home/Home.s
 	@echo ... src/route/Route.obj
 	@echo ... src/route/Route.i
 	@echo ... src/route/Route.s
+	@echo ... src/tower/Arrow.obj
+	@echo ... src/tower/Arrow.i
+	@echo ... src/tower/Arrow.s
+	@echo ... src/tower/ArrowManager.obj
+	@echo ... src/tower/ArrowManager.i
+	@echo ... src/tower/ArrowManager.s
+	@echo ... src/tower/Tower.obj
+	@echo ... src/tower/Tower.i
+	@echo ... src/tower/Tower.s
+	@echo ... src/tower/TowerManager.obj
+	@echo ... src/tower/TowerManager.i
+	@echo ... src/tower/TowerManager.s
 	@echo ... src/ui/Button.obj
 	@echo ... src/ui/Button.i
 	@echo ... src/ui/Button.s

@@ -5,11 +5,14 @@
 #include <route/Route.hpp>
 #include <ui/Button.hpp>
 #include <pages/Home.hpp>
+#include <pages/Battle.hpp>
 
 Battlefields::~Battlefields() {
     if (texture) {
         SDL_DestroyTexture(texture);
     }
+    delete backButton;
+    for (auto* btn : battles) delete btn;
 }
 
 Battlefields::Battlefields(Route& route) : route(route) {
@@ -19,42 +22,76 @@ Battlefields::Battlefields(Route& route) : route(route) {
         std::cout << "TTF_OpenFont Error: " << TTF_GetError() << std::endl;
     }
 
-    // Tạo nút Start
-    startButton = new Button(route.getRenderer(), 200, 200, 200, 60, "Bắt đầu", font);
-
-    ButtonStyleConfig startBtnStyle;
-    startBtnStyle.bgColor = {0, 0, 255, 255};  
-    startBtnStyle.textColor = {255, 255, 255, 255}; 
-    startBtnStyle.borderColor = {0, 0, 0, 255}; 
-    startBtnStyle.borderRadius = 10;
-    startBtnStyle.text = "Quay lại";
-    startBtnStyle.font = font;
-
-    startButton->applyStyle(startBtnStyle);
-    startButton->setOnClick([&]() {
-        route.setPage(new Home(route));
-    });
-
     // Load background
-    SDL_Surface* surface = IMG_Load("../assets/home/home.jpg"); 
+    SDL_Surface* surface = IMG_Load("../assets/battlefields/battlefields.jpg"); 
     if (!surface) {
         std::cout << "IMG_Load Error: " << IMG_GetError() << std::endl;
-        return;
     }
     texture = SDL_CreateTextureFromSurface(route.getRenderer(), surface);
     SDL_FreeSurface(surface); 
+
+    // Load nhạc
+    Mix_Music* bgMusic = Mix_LoadMUS("../assets/music/battlefieldsMusic.mp3");
+    if (!bgMusic) {
+        std::cerr << "Failed to load music: " << Mix_GetError() << std::endl;
+    }
+    Mix_PlayMusic(bgMusic, -1);
+
+    ButtonStyleConfig styleBtn;
+    styleBtn.borderColor = {0, 0, 0, 0};
+
+    // Tạo nút Back
+    backButton = new Button(route.getRenderer(), 65, 900, 165, 60, "", font);
+
+    SDL_Rect backSrc = {65, 900, 165, 60};
+    // Gắn các thuộc tính cho nút back
+    backButton->applyStyle(styleBtn);
+    backButton->setBackgroundTexture(texture, backSrc);
+    backButton->setOnClick([&]() {
+        route.setPage(new Home(route));
+    });
+
+    // Nút các màn chơi
+    struct LevelBtn {
+        int x, y, w, h;
+    };
+
+    // Danh sách các nút vào các màn chơi
+    std::vector<LevelBtn> levelPositions = {
+        {150, 235, 120, 120},   
+        {450, 205, 120, 120},   
+        {750, 230, 120, 120},   
+        {595, 715, 120, 120},   
+    };
+
+    // Tạo từng nút thủ công theo danh sách trên
+    int levels = (int)levelPositions.size();
+    for (int i = 0; i < levels; i++) {
+        auto& pos = levelPositions[i];
+        Button* btn = new Button(route.getRenderer(), pos.x, pos.y, pos.w, pos.h,
+                                 "", font);
+        btn->applyStyle(styleBtn);
+        SDL_Rect btnRect = {pos.x, pos.y, pos.w, pos.h};
+        btn->setBackgroundTexture(texture, btnRect);
+        btn->setOnClick([&, i]() {
+            route.setPage(new Battle(route, i + 1));
+        });
+        battles.push_back(btn);
+    }
 }
 
 void Battlefields::handleEvent(SDL_Event& e) {
-    startButton->handleEvent(e);
+    backButton->handleEvent(e);
+    for (auto* btn : battles) btn->handleEvent(e);
 }
 
 void Battlefields::render(SDL_Renderer* renderer) {
     // Vẽ background
     SDL_RenderCopy(renderer, texture, NULL, NULL);
-
+    
     // Vẽ nút
-    startButton->render();
+    backButton->render();
+    for (auto* btn : battles) btn->render();
 
     SDL_RenderPresent(renderer);
 }

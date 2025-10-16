@@ -7,7 +7,7 @@ using namespace std;
 
 int main(int argc, char* argv[]) {
     Game game;
-    bool isRunning = game.Initialize("Tower Defense", 1792, 896, false);
+    bool isRunning = game.Initialize("Tower Defense", 1024, 1024, false);
     if (isRunning) {
         game.Run();
     }
