@@ -5,8 +5,7 @@
 #include <SDL2/SDL_mixer.h>
 #include <enemy/EnemyManager.hpp>
 #include <core/Map.hpp>
-
-class Game {
+class Game{
 public: 
     Game();
     ~Game();

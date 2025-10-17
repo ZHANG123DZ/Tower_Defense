@@ -57,14 +57,13 @@ bool Game::Initialize(const char* title, int width, int height, bool fullScreen)
     // Tạo map & enemy manager
     map = new Map(renderer, "../assets/1 Tiles/battle.jpg", 32 * 4, 32 * 4, 12);
     enemyManager = new EnemyManager(renderer, {{100,100},{400,100},{400,400},{700,400}});
-    enemyManager->addWave({5, 1.0f, 100.0f, 80.0f});
+    enemyManager->addWave({2, 1.0f, 100.0f, 80.0f});
     enemyManager->addWave({10, 0.8f, 150.0f, 90.0f});
-    enemyManager->addWave({15, 0.6f, 200.0f, 100.0f});
-    enemyManager->addWave({20, 0.5f, 250.0f, 110.0f}); 
-    enemyManager->startWave({5, 1.0f, 100.0f, 80.0f});
-    enemyManager->startWave({10, 0.8f, 150.0f, 90.0f});
-    enemyManager->startWave({15, 0.6f, 200.0f, 100.0f});
-    enemyManager->startWave({20, 0.5f, 250.0f, 110.0f});
+    enemyManager->addWave({20, 0.6f, 200.0f, 100.0f});
+    enemyManager->addWave({30, 0.5f, 250.0f, 110.0f}); 
+    enemyManager->addWave({40, 0.4f, 300.0f, 130.0f}); 
+    enemyManager->startWave(enemyManager->getWaves()[0]);  // bắt đầu wave 1
+    
     map->loadMap(level);
     SDL_Surface* enemySurface = IMG_Load("../assets/1 Tiles/download.png");
     if(!enemySurface) {

@@ -28,12 +28,15 @@ private:
     int totalSpawned;
     int enemiesReachedEnd;
     int baseHP; // tổng hp của thành
+    float waveDelayTimer;//đếm thời gian giữa các wave
 public:
     EnemyManager(SDL_Renderer* renderer, const std::vector<SDL_Point>& enemyPath);
     ~EnemyManager();
-
+    const std::vector<Wave>& getWaves() const;
     void update(float deltaTime);
     void render();
+    float timeBetweenWaves; 
+    float waveTimer;
 
     void startWave(const Wave& wave);
     void addWave(const Wave& wave);
