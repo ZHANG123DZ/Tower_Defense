@@ -35,7 +35,6 @@ target_link_libraries(${PROJECT_NAME}
     SDL2_image
     SDL2_ttf
     SDL2_mixer
-    SDL2_gfx
 )
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
@@ -44,6 +43,5 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         "${CMAKE_SOURCE_DIR}/SDL2_image.dll"
         "${CMAKE_SOURCE_DIR}/SDL2_ttf.dll"
         "${CMAKE_SOURCE_DIR}/SDL2_mixer.dll"
-        "${CMAKE_SOURCE_DIR}/SDL2_gfx.dll"
         $<TARGET_FILE_DIR:${PROJECT_NAME}>
 )

@@ -1,6 +1,5 @@
 #include "ui/Modal.hpp"
 #include <SDL2/SDL_image.h>
-#include <SDL2_gfx/SDL2_gfxPrimitives.h>
 #include <iostream>
 
 Modal::Modal(SDL_Renderer* renderer, TTF_Font* font, const std::string& message, bool showCloseButton)
@@ -31,7 +30,6 @@ Modal::Modal(SDL_Renderer* renderer, TTF_Font* font, const std::string& message,
         ButtonStyleConfig style;
         style.bgColor = { 255, 100, 100, 255 };
         style.textColor = { 255, 255, 255, 255 };
-        style.borderRadius = 15;
         closeButton->applyStyle(style);
 
         closeButton->setOnClick([this]() {
@@ -66,25 +64,14 @@ void Modal::updateMessageTexture() {
 void Modal::render() {
     if (!visible) return;
 
-    // Backdrop
+    // Backdrop (overlay mờ nền)
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
     SDL_SetRenderDrawColor(renderer, backdropColor.r, backdropColor.g, backdropColor.b, backdropColor.a);
     SDL_RenderFillRect(renderer, nullptr);
 
-    // Modal background
-    if (borderRadius > 0) {
-        roundedBoxRGBA(
-            renderer,
-            modalRect.x, modalRect.y,
-            modalRect.x + modalRect.w,
-            modalRect.y + modalRect.h,
-            borderRadius,
-            modalBgColor.r, modalBgColor.g, modalBgColor.b, modalBgColor.a
-        );
-    } else {
-        SDL_SetRenderDrawColor(renderer, modalBgColor.r, modalBgColor.g, modalBgColor.b, modalBgColor.a);
-        SDL_RenderFillRect(renderer, &modalRect);
-    }
+    // Modal background (không còn bo góc)
+    SDL_SetRenderDrawColor(renderer, modalBgColor.r, modalBgColor.g, modalBgColor.b, modalBgColor.a);
+    SDL_RenderFillRect(renderer, &modalRect);
 
     // Message text
     if (messageTexture) {
@@ -116,7 +103,6 @@ void Modal::handleEvent(const SDL_Event& e) {
 void Modal::applyStyle(const ModalStyleConfig& config) {
     modalBgColor = config.bgColor;
     backdropColor = config.backdropColor;
-    borderRadius = config.borderRadius;
 }
 
 void Modal::setOnClose(std::function<void()> callback) {

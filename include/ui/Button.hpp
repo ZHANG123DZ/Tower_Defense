@@ -12,7 +12,6 @@ struct ButtonStyleConfig {
     SDL_Color bgColor = {0, 0, 255, 255};
     TTF_Font* font = nullptr;
     std::string text = "";
-    int borderRadius = 0;
 };
 
 class Button {
@@ -21,7 +20,6 @@ private:
     SDL_Rect rect;
     SDL_Rect srcRect;
     bool hasSrcRect = false;
-    int borderRadius = 0;
 
     SDL_Color borderColor, textColor, bgColor;
     std::string text;

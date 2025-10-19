@@ -9,7 +9,6 @@
 struct ModalStyleConfig {
     SDL_Color backdropColor = {0, 0, 0, 128};
     SDL_Color bgColor = {255, 255, 255, 255};
-    int borderRadius = 0;
 };
 
 class Modal {
@@ -20,7 +19,6 @@ private:
     SDL_Rect modalRect;
     SDL_Color modalBgColor = { 255, 255, 255, 255 };
     SDL_Color backdropColor = { 0, 0, 0, 128 };
-    int borderRadius = 10;
 
     std::string message;
     SDL_Texture* messageTexture = nullptr;

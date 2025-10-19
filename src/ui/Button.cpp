@@ -1,7 +1,6 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
-#include <SDL2_gfx/SDL2_gfxPrimitives.h>
 #include <ui/Button.hpp>
 #include <iostream>
 #include <algorithm>
@@ -25,7 +24,6 @@ void Button::applyStyle(const ButtonStyleConfig& config) {
     borderColor = config.borderColor;
     textColor = config.textColor;
     bgColor = config.bgColor;
-    borderRadius = config.borderRadius;
 
     if (!config.text.empty()) text = config.text;
     if (config.font) font = config.font;
@@ -87,18 +85,9 @@ void Button::render() {
         SDL_RenderFillRect(renderer, &dstRect);
     }
 
-    // Vẽ viền
-    if (borderRadius > 0) {
-        roundedRectangleRGBA(renderer,
-            dstRect.x, dstRect.y,
-            dstRect.x + dstRect.w, dstRect.y + dstRect.h,
-            borderRadius,
-            borderColor.r, borderColor.g, borderColor.b, borderColor.a
-        );
-    } else {
-        SDL_SetRenderDrawColor(renderer, borderColor.r, borderColor.g, borderColor.b, borderColor.a);
-        SDL_RenderDrawRect(renderer, &dstRect);
-    }
+    // Vẽ viền 
+    SDL_SetRenderDrawColor(renderer, borderColor.r, borderColor.g, borderColor.b, borderColor.a);
+    SDL_RenderDrawRect(renderer, &dstRect);
 
     // Vẽ text
     if (textTexture) {
@@ -117,7 +106,7 @@ void Button::render() {
     // Hiệu ứng hover overlay nhẹ
     if (isHovered) {
         SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
-        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 40); // overlay mờ trắng
+        SDL_SetRenderDrawColor(renderer, 255, 255, 255, 40);
         SDL_RenderFillRect(renderer, &dstRect);
     }
 }
