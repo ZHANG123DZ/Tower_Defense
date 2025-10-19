@@ -1,9 +1,11 @@
 #pragma once
+
 #include <SDL2/SDL.h>
 #include <vector>
 #include <memory>
-#include <enemy/Enemy.hpp>
+#include "Enemy.hpp" // Đảm bảo bạn đã include đúng đường dẫn tới file Enemy.hpp
 
+// Dùng lại struct Wave của bạn, rất hợp lý
 struct Wave {
     int enemyCount;
     float spawnInterval;
@@ -12,45 +14,54 @@ struct Wave {
 };
 
 class EnemyManager {
-private:
-    SDL_Renderer* renderer;
-    SDL_Texture* enemyTexture;
-    std::vector<SDL_Point> enemyPath;
-    std::vector<std::unique_ptr<Enemy>> enemies;
-
-    // Wave system
-    std::vector<Wave> waves;
-    int currentWaveIndex;
-    bool spawning;
-    float spawnTimer;
-    int enemiesSpawnedInWave;
-    Wave currentWave;
-    int totalSpawned;
-    int enemiesReachedEnd;
-
 public:
-    EnemyManager(SDL_Renderer* renderer, const std::vector<SDL_Point>& enemyPath);
-    ~EnemyManager();
+    EnemyManager(SDL_Renderer* renderer, const std::vector<SDL_Point>& path);
+    ~EnemyManager() = default;
 
-    std::vector<Enemy*> getEnemies();
+    // --- Cấu hình ---
+    void addWave(const Wave& wave);
+    void setEnemyTexture(SDL_Texture* tex);
     
+    // --- Điều khiển ---
+    void start(); // Gọi hàm này một lần duy nhất để bắt đầu chuỗi các wave
     void update(float deltaTime);
     void render();
 
-    void startWave(const Wave& wave);
-    void addWave(const Wave& wave);
-    bool isWaveComplete() const;
-    bool allEnemiesDead() const;
+    // --- Lấy thông tin ---
+    const std::vector<std::unique_ptr<Enemy>>& getEnemies() const; // Dùng để cho Tower nhắm bắn
+    int getBaseHP() const;
+    bool isGameOver() const;
+    bool isFinished() const; // Kiểm tra xem đã hoàn thành tất cả các wave chưa
 
-    void spawnEnemy(float hp, float speed);
-    void removeDeadEnemies();
+private:
+    // Sử dụng State Machine để quản lý trạng thái rõ ràng hơn
+    enum class State {
+        WAITING_TO_START, // Đang chờ lệnh start()
+        SPAWNING_WAVE,    // Đang trong quá trình sinh quái
+        BETWEEN_WAVES,    // Đang trong thời gian nghỉ giữa 2 wave
+        FINISHED          // Đã hoàn thành tất cả các wave
+    };
+
+    void spawnEnemy();
+    void startNextWave();
+
+    // SDL & Dữ liệu Game
+    SDL_Renderer* renderer;
+    SDL_Texture* enemyTexture = nullptr;
+    std::vector<SDL_Point> enemyPath;
+    std::vector<Wave> waves;
+    std::vector<std::unique_ptr<Enemy>> enemies;
+
+    // Trạng thái và điều khiển Wave
+    State currentState = State::WAITING_TO_START;
+    int currentWaveIndex = -1;
+    float timeBetweenWaves = 5.0f; // 5 giây nghỉ giữa các wave
+
+    // Timers & Counters
+    float spawnTimer = 0.0f;
+    float interWaveTimer = 0.0f; // Timer đếm thời gian nghỉ
+    int enemiesSpawnedThisWave = 0;
     
-    int getAliveEnemyCount() const;
-    int getTotalSpawnedCount() const { return totalSpawned; }
-    int getCurrentWaveNumber() const { return currentWaveIndex + 1; }
-    bool isSpawning() const { return spawning; }
-
-    void damageEnemyAt(SDL_Point position, float damage, float radius = 30.0f);
-
-    void setEnemyTexture(SDL_Texture* tex);
+    // Trạng thái người chơi
+    int baseHP = 20;
 };

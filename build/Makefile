@@ -152,6 +152,30 @@ src/core/Game.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/core/Game.cpp.s
 .PHONY : src/core/Game.cpp.s
 
+src/core/GameState.obj: src/core/GameState.cpp.obj
+.PHONY : src/core/GameState.obj
+
+# target to build an object file
+src/core/GameState.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/core/GameState.cpp.obj
+.PHONY : src/core/GameState.cpp.obj
+
+src/core/GameState.i: src/core/GameState.cpp.i
+.PHONY : src/core/GameState.i
+
+# target to preprocess a source file
+src/core/GameState.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/core/GameState.cpp.i
+.PHONY : src/core/GameState.cpp.i
+
+src/core/GameState.s: src/core/GameState.cpp.s
+.PHONY : src/core/GameState.s
+
+# target to generate assembly for a file
+src/core/GameState.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/core/GameState.cpp.s
+.PHONY : src/core/GameState.cpp.s
+
 src/core/Map.obj: src/core/Map.cpp.obj
 .PHONY : src/core/Map.obj
 
@@ -500,6 +524,9 @@ help:
 	@echo ... src/core/Game.obj
 	@echo ... src/core/Game.i
 	@echo ... src/core/Game.s
+	@echo ... src/core/GameState.obj
+	@echo ... src/core/GameState.i
+	@echo ... src/core/GameState.s
 	@echo ... src/core/Map.obj
 	@echo ... src/core/Map.i
 	@echo ... src/core/Map.s

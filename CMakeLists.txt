@@ -8,6 +8,7 @@ add_executable(${PROJECT_NAME}
     src/main.cpp
     src/core/Game.cpp
     src/core/Map.cpp
+    src/core/GameState.cpp
     src/ui/Modal.cpp
     src/ui/Button.cpp
     src/route/Route.cpp

@@ -1,15 +1,19 @@
-#include "ui/Modal.hpp"
-#include <SDL2/SDL_image.h>
+#include <ui/Modal.hpp>
 #include <iostream>
 
-Modal::Modal(SDL_Renderer* renderer, TTF_Font* font, const std::string& message, bool showCloseButton)
+Modal::Modal(SDL_Renderer* renderer, TTF_Font* font, const std::string& message,
+             bool showCloseButton, int modalWidth, int modalHeight)
     : renderer(renderer), font(font), message(message), hasCloseButton(showCloseButton)
 {
-    // Kích thước modal
-    int modalWidth = 400;
-    int modalHeight = 200;
-    int windowWidth = 800, windowHeight = 600;
+    int windowWidth = 800;
+    int windowHeight = 600;
+    SDL_GetRendererOutputSize(renderer, &windowWidth, &windowHeight);
 
+    // Nếu không truyền kích thước, dùng mặc định
+    if (modalWidth <= 0) modalWidth = windowWidth / 2;
+    if (modalHeight <= 0) modalHeight = windowHeight / 3;
+
+    // Canh giữa
     modalRect = {
         (windowWidth - modalWidth) / 2,
         (windowHeight - modalHeight) / 2,
@@ -17,19 +21,18 @@ Modal::Modal(SDL_Renderer* renderer, TTF_Font* font, const std::string& message,
         modalHeight
     };
 
+    visible = false;
     updateMessageTexture();
 
     if (hasCloseButton) {
-        TTF_Font* smallFont = font;
-
         closeButton = new Button(renderer,
             modalRect.x + modalRect.w - 40,
             modalRect.y + 10,
-            30, 30, "X", smallFont);
+            30, 30, "X", font);
 
         ButtonStyleConfig style;
-        style.bgColor = { 255, 100, 100, 255 };
-        style.textColor = { 255, 255, 255, 255 };
+        style.bgColor = {200, 50, 50, 255};
+        style.textColor = {255, 255, 255, 255};
         closeButton->applyStyle(style);
 
         closeButton->setOnClick([this]() {
@@ -42,18 +45,25 @@ Modal::Modal(SDL_Renderer* renderer, TTF_Font* font, const std::string& message,
 Modal::~Modal() {
     if (messageTexture) {
         SDL_DestroyTexture(messageTexture);
+        messageTexture = nullptr;
     }
     if (closeButton) {
         delete closeButton;
+        closeButton = nullptr;
     }
 }
 
 void Modal::updateMessageTexture() {
-    if (messageTexture) SDL_DestroyTexture(messageTexture);
+    if (messageTexture) {
+        SDL_DestroyTexture(messageTexture);
+        messageTexture = nullptr;
+    }
 
-    SDL_Surface* surface = TTF_RenderText_Blended_Wrapped(font, message.c_str(), { 0, 0, 0, 255 }, modalRect.w - 40);
+    if (message.empty()) return;
+
+    SDL_Surface* surface = TTF_RenderText_Blended_Wrapped(font, message.c_str(), {0, 0, 0, 255}, modalRect.w - 40);
     if (!surface) {
-        std::cerr << "Text render failed: " << TTF_GetError() << std::endl;
+        std::cerr << "Failed to render text: " << TTF_GetError() << std::endl;
         return;
     }
 
@@ -64,29 +74,31 @@ void Modal::updateMessageTexture() {
 void Modal::render() {
     if (!visible) return;
 
-    // Backdrop (overlay mờ nền)
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
+
+    // Nền mờ (backdrop)
     SDL_SetRenderDrawColor(renderer, backdropColor.r, backdropColor.g, backdropColor.b, backdropColor.a);
     SDL_RenderFillRect(renderer, nullptr);
 
-    // Modal background (không còn bo góc)
+    // Hộp modal
     SDL_SetRenderDrawColor(renderer, modalBgColor.r, modalBgColor.g, modalBgColor.b, modalBgColor.a);
     SDL_RenderFillRect(renderer, &modalRect);
 
-    // Message text
+    // Hiển thị message
     if (messageTexture) {
         int texW, texH;
         SDL_QueryTexture(messageTexture, nullptr, nullptr, &texW, &texH);
 
-        SDL_Rect dst = {
+        SDL_Rect dstRect = {
             modalRect.x + 20,
             modalRect.y + 60,
-            texW, texH
+            texW,
+            texH
         };
-        SDL_RenderCopy(renderer, messageTexture, nullptr, &dst);
+        SDL_RenderCopy(renderer, messageTexture, nullptr, &dstRect);
     }
 
-    // Close button
+    // Nút đóng
     if (hasCloseButton && closeButton) {
         closeButton->render();
     }
@@ -115,4 +127,13 @@ void Modal::setVisible(bool isVisible) {
 
 bool Modal::isVisible() const {
     return visible;
+}
+
+void Modal::setText(const std::string& newMessage) {
+    message = newMessage;
+    updateMessageTexture();
+}
+
+const std::string& Modal::getText() const {
+    return message;
 }

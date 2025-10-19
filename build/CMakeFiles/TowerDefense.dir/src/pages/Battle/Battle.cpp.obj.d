@@ -310,6 +310,7 @@ CMakeFiles/TowerDefense.dir/src/pages/Battle/Battle.cpp.obj: \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_version.h \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_image.h \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL.h \
+ C:/Users/Admin/TowerDefense2/include/SDL2/SDL_ttf.h \
  C:/Users/Admin/TowerDefense2/include/route/Route.hpp \
  C:/Users/Admin/TowerDefense2/include/pages/Page.hpp \
  C:/Users/Admin/TowerDefense2/include/ui/Button.hpp \
@@ -330,7 +331,6 @@ CMakeFiles/TowerDefense.dir/src/pages/Battle/Battle.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/vector.tcc \
  C:/msys64/ucrt64/include/c++/15.2.0/array \
  C:/msys64/ucrt64/include/c++/15.2.0/compare \
- C:/Users/Admin/TowerDefense2/include/SDL2/SDL_ttf.h \
  C:/Users/Admin/TowerDefense2/include/tower/TowerManager.hpp \
  C:/Users/Admin/TowerDefense2/include/tower/Tower.hpp \
  C:/msys64/ucrt64/include/string.h \
@@ -357,5 +357,13 @@ CMakeFiles/TowerDefense.dir/src/pages/Battle/Battle.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.2.0/pstl/execution_defs.h \
  C:/Users/Admin/TowerDefense2/include/tile/Tile.hpp \
  C:/Users/Admin/TowerDefense2/include/enemy/EnemyManager.hpp \
- C:/Users/Admin/TowerDefense2/include/pages/Home.hpp \
+ C:/Users/Admin/TowerDefense2/include/core/GameState.hpp \
+ C:/msys64/ucrt64/include/c++/15.2.0/cstdint \
+ C:/msys64/ucrt64/include/c++/15.2.0/algorithm \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_algo.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/algorithmfwd.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_heap.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/uniform_int_dist.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/pstl/glue_algorithm_defs.h \
+ C:/Users/Admin/TowerDefense2/include/ui/Modal.hpp \
  C:/Users/Admin/TowerDefense2/include/pages/Battlefields.hpp
