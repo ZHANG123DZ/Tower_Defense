@@ -13,7 +13,7 @@ public:
     ~ArrowManager();
 
     void setArrowTexture(SDL_Texture* tex);
-    void spawnArrow(SDL_Point startPos, Enemy* target);
+    void spawnArrow(SDL_Point startPos, Enemy* target, float damage);
     
     void update(float deltaTime);
     void render(SDL_Renderer* renderer);

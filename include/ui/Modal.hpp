@@ -26,7 +26,8 @@ public:
     void setBackgroundTexture(SDL_Texture* texture);
     void setText(const std::string& newMessage);
     const std::string& getText() const;
-
+    void addButton(Button* button);
+    
 private:
     SDL_Texture* backgroundTexture = nullptr;
     SDL_Renderer* renderer;
@@ -42,4 +43,7 @@ private:
     std::function<void()> onCloseCallback;
 
     void updateMessageTexture();
+
+    // Các nút trong modal
+    std::vector<Button*> buttons;
 };

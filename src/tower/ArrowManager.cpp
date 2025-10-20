@@ -11,9 +11,9 @@ void ArrowManager::setArrowTexture(SDL_Texture* tex) {
     arrowTexture = tex;
 }
 
-void ArrowManager::spawnArrow(SDL_Point startPos, Enemy* target) {
+void ArrowManager::spawnArrow(SDL_Point startPos, Enemy* target, float damage) {
     if (arrowTexture && target) {
-        Arrow* newArrow = new Arrow(arrowTexture, startPos, target);
+        Arrow* newArrow = new Arrow(arrowTexture, startPos, target, damage);
         arrows.push_back(newArrow);
     }
 }

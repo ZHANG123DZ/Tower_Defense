@@ -23,7 +23,7 @@ Battlefields::Battlefields(Route& route) : route(route) {
     }
 
     // Load background
-    SDL_Surface* surface = IMG_Load("../assets/battlefields/battlefields.jpg"); 
+    SDL_Surface* surface = IMG_Load("../assets/battlefields/battlefields.png"); 
     if (!surface) {
     }
     texture = SDL_CreateTextureFromSurface(route.getRenderer(), surface);

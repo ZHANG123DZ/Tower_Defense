@@ -6,8 +6,8 @@
 
 Mix_Chunk* Arrow::hitSound = nullptr;
 
-Arrow::Arrow(SDL_Texture* texture, SDL_Point startPos, Enemy* target)
-    : texture(texture), position(startPos), target(target) {
+Arrow::Arrow(SDL_Texture* texture, SDL_Point startPos, Enemy* target, float damage)
+    : texture(texture), position(startPos), target(target), damage(damage) {
 
     if (target) {
         SDL_Point enemyPos = target->getPosition();
@@ -44,7 +44,7 @@ void Arrow::update(float deltaTime) {
         if (hitSound) {
             Mix_PlayChannel(-1, hitSound, 0);
         }
-        target->takeDamage(50.0f);
+        target->takeDamage(damage);
         active = false;
     }
 }

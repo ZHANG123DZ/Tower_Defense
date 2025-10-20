@@ -16,7 +16,7 @@ struct Wave {
 
 class EnemyManager {
 public:
-    EnemyManager(SDL_Renderer* renderer, const std::vector<SDL_Point>& path, GameState* gamaState);
+    EnemyManager(SDL_Renderer* renderer, const std::vector<SDL_Point>& path);
     ~EnemyManager() = default;
 
     // --- Cấu hình ---
@@ -31,9 +31,11 @@ public:
     // --- Lấy thông tin ---
     const std::vector<std::unique_ptr<Enemy>>& getEnemies() const; // Dùng để cho Tower nhắm bắn
     int getBaseHP() const;
+    void setBaseHP(int hp);
     bool isGameOver() const;
     bool isFinished() const; // Kiểm tra xem đã hoàn thành tất cả các wave chưa
 
+    void setGameState(GameState* gameState);
 private:
     // Sử dụng State Machine để quản lý trạng thái rõ ràng hơn
     enum class State {

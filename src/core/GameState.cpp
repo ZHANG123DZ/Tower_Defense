@@ -27,6 +27,8 @@ bool GameState::shouldShowEndGameModal() const { return showEndModal; }
 void GameState::hideEndGameModal() { showEndModal = false; }
 
 void GameState::addMoney(int amount) { money += amount; }
+void GameState::decreaseMoney(int amount) { money -= amount;}
+void GameState::setMoney(int amount) { money = amount; }
 int GameState::getMoney() const { return money; }
 void GameState::resetMoney() { money = 0; }
 

@@ -28,6 +28,8 @@ public:
     bool shouldShowEndGameModal() const;
     void hideEndGameModal();
     void addMoney(int amount);
+    void decreaseMoney(int amount);
+    void setMoney(int amount);
     int getMoney() const;
     void resetMoney();
     static GameState* getInstance();

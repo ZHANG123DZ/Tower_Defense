@@ -68,7 +68,26 @@ void TowerManager::render() {
                               towerButtons[i]->getWidth(), towerButtons[i]->getHeight() };
             SDL_RenderCopy(renderer, frameTexture, nullptr, &rect);
         }
+
+        // Vẽ giá tiền dưới nút chọn
+        if (i < (int)prices.size()) {
+            std::string priceText = std::to_string(prices[i]);
+            SDL_Color white = {255, 255, 255, 255};
+            SDL_Surface* textSurface = TTF_RenderText_Solid(font, priceText.c_str(), white);
+            if (textSurface) {
+                SDL_Texture* textTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+                if (textTexture) {
+                    int textX = towerButtons[i]->getX() + towerButtons[i]->getWidth() / 2 - textSurface->w / 2;
+                    int textY = towerButtons[i]->getY() + towerButtons[i]->getHeight() - 40;
+                    SDL_Rect dstRect = { textX, textY, textSurface->w, textSurface->h };
+                    SDL_RenderCopy(renderer, textTexture, nullptr, &dstRect);
+                    SDL_DestroyTexture(textTexture);
+                }
+                SDL_FreeSurface(textSurface);
+            }
+        }
     }
+
     for (Tower* tower : towers) {
         if (tower) {
             tower->render(renderer);
@@ -96,4 +115,8 @@ void TowerManager::removeTower(Tower* tower) {
 
 std::vector<Tower*> TowerManager::getTowers() {
     return towers;
+}
+
+void TowerManager::setPrices(const std::vector<int>& newPrices) {
+    prices = newPrices;
 }

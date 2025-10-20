@@ -10,6 +10,16 @@
 Battle::~Battle() {
     if (texture) SDL_DestroyTexture(texture);
     if (arrowTexture) SDL_DestroyTexture(arrowTexture);
+        
+    if (moneyTexture) {
+        SDL_DestroyTexture(moneyTexture);
+        moneyTexture = nullptr;
+    }
+
+    if (hpTexture) {
+        SDL_DestroyTexture(hpTexture);
+        hpTexture = nullptr;
+    }
 
     delete arrowManager;
     delete towerManager;
@@ -30,13 +40,14 @@ Battle::Battle(Route& route, int level)
       backButton(nullptr), map(nullptr)
 {
     // ===== TẢI FONT =====
-    font = TTF_OpenFont("../assets/fonts/Roboto-Regular.ttf", 24);
+    font = TTF_OpenFont("../assets/fonts/Jersey15-Regular.ttf", 45);
     if (!font) {
         std::cerr << "TTF_OpenFont Error: " << TTF_GetError() << std::endl;
     }
 
     // ===== TẢI NỀN BẢN ĐỒ =====
-    SDL_Surface* surface = IMG_Load("../assets/maps/map.jpg");
+    std::string pathMap = "../assets/maps/map" + std::to_string(level) + ".png";
+    SDL_Surface* surface = IMG_Load(pathMap.c_str());
     if (!surface) {
         std::cerr << "IMG_Load Error: " << IMG_GetError() << std::endl;
     } else {
@@ -62,7 +73,7 @@ Battle::Battle(Route& route, int level)
     });
 
     // ===== MODAL KẾT THÚC GAME =====
-    endGameModal = new Modal(route.getRenderer(), font, "", false, 549, 455);
+    endGameModal = new Modal(route.getRenderer(), font, "", false, 500, 500);
     endGameModal->setOnClose([this, &route]() {
         route.setPage(new Battlefields(route));
     });
@@ -78,14 +89,16 @@ Battle::Battle(Route& route, int level)
         "../assets/tower/magicTower.png",
         "../assets/tower/machineTower.png"
     });
-
+    std::vector<int> prices = {100, 200, 300, 400};
+    towerManager->setPrices(prices);
     // ===== ARROW MANAGER =====
     arrowManager = new ArrowManager();
     arrowTexture = IMG_LoadTexture(route.getRenderer(), "../assets/arrow/arrow.png");
     arrowManager->setArrowTexture(arrowTexture);
 
     // ===== MAP MANAGER =====
-    map = new Map(route.getRenderer(), "../assets/maps/map.jpg", 128, 128, 8);
+    std::string pathMapManager = "../assets/maps/map" + std::to_string(level) + ".png";
+    map = new Map(route.getRenderer(), pathMapManager, 128, 128, 8);
 
     // Load map từ file
     std::ifstream mapFile("../assets/maps/map.txt");
@@ -103,7 +116,8 @@ Battle::Battle(Route& route, int level)
     }
 
     // ===== LOAD ROUTE =====
-    std::ifstream routeFile("../assets/route/route.txt");
+    std::string pathRoute = "../assets/route/route" + std::to_string(level) + ".txt";
+    std::ifstream routeFile(pathRoute);
     std::vector<SDL_Point> routePoints;
     int x, y;
 
@@ -116,11 +130,22 @@ Battle::Battle(Route& route, int level)
         routeFile.close();
     }
 
-    enemyManager = new EnemyManager(route.getRenderer(), routePoints, gameState);
+    enemyManager = new EnemyManager(route.getRenderer(), routePoints);
+    auto gameState = GameState::getInstance();
+    enemyManager->setGameState(gameState);
+    
+    std::string configPath = "../assets/config/config"+ std::to_string(level) +".txt";
+    std::ifstream configFile(configPath);
 
+    int startingMoney = 0, startingHP = 0;
+    configFile >> startingMoney >> startingHP;
+    gameState->setMoney(startingMoney);
+    enemyManager->setBaseHP(startingHP);
 
     // ===== LOAD WAVES =====
-    std::ifstream waveFile("../assets/waves/waves.txt");
+    std::string path = "../assets/waves/waves" + std::to_string(level) + ".txt";
+
+    std::ifstream waveFile(path);
     if (!waveFile.is_open()) {
         std::cerr << "Failed to open waves.txt" << std::endl;
     } else {
@@ -138,7 +163,8 @@ Battle::Battle(Route& route, int level)
     }
 
     // ===== TEXTURE KẺ ĐỊCH =====
-    SDL_Surface* enemySurface = IMG_Load("../assets/tower/woodTower.png");
+    std::string pathEnemy = "../assets/enemy/enemy" + std::to_string(level) + ".png";
+    SDL_Surface* enemySurface = IMG_Load(pathEnemy.c_str());
     if (!enemySurface) {
         std::cerr << "Failed to load enemy image: " << IMG_GetError() << std::endl;
     } else {
@@ -173,6 +199,10 @@ void Battle::handleEvent(SDL_Event& e) {
 
         if (clicked->getId() == 1 && !clicked->getHasTower()) {
             int selectTower = towerManager->getSelectedTower();
+            std::vector<int> prices = {100, 200, 300, 400};
+            std::vector<float> damages = {30.0f, 40.0f, 50.0f, 60.0f};
+            auto gameState = GameState::getInstance();
+            int currentMoney = gameState->getMoney();
             static const std::vector<std::string> links = {
                 "../assets/tower/woodTower.png",
                 "../assets/tower/stoneTower.png",
@@ -180,18 +210,78 @@ void Battle::handleEvent(SDL_Event& e) {
                 "../assets/tower/machineTower.png"
             };
 
-            if (selectTower >= 0 && selectTower < (int)links.size()) {
+            if (selectTower >= 0 && selectTower < (int)links.size() && currentMoney>=prices[selectTower]) {
                 SDL_Rect dest = clicked->getDestRect();
                 Tower* newTower = new Tower(
                     route.getRenderer(),
                     links[selectTower],
+                    damages[selectTower],
                     dest.x, dest.y, dest.w, dest.h
                 );
                 towerManager->addTower(newTower);
                 clicked->setHasTower(true);
+                gameState->decreaseMoney(prices[selectTower]);
             }
         }
     }
+}
+
+void Battle::updateMoneyTexture(SDL_Renderer* renderer, int money) {
+    if (money == lastMoney) return;
+
+    // Giải phóng texture cũ nếu có
+    if (moneyTexture) {
+        SDL_DestroyTexture(moneyTexture);
+        moneyTexture = nullptr;
+    }
+
+    lastMoney = money;
+    std::string moneyText = std::to_string(money);
+    SDL_Color color = {255, 255, 255, 255};
+
+    SDL_Surface* textSurface = TTF_RenderText_Solid(font, moneyText.c_str(), color);
+    if (!textSurface) {
+        std::cerr << "TTF_RenderText_Solid Error: " << TTF_GetError() << std::endl;
+        return;
+    }
+
+    moneyTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+    if (!moneyTexture) {
+        std::cerr << "SDL_CreateTextureFromSurface Error: " << SDL_GetError() << std::endl;
+    }
+
+    // Lưu kích thước để render dễ dàng 
+    moneyRect = {550, 5, textSurface->w, textSurface->h};
+
+    SDL_FreeSurface(textSurface);
+}
+
+void Battle::updateHPTexture(SDL_Renderer* renderer, int hp) {
+    if (hp == lastHP) return;  // Nếu máu không đổi thì không làm gì
+
+    if (hpTexture) {
+        SDL_DestroyTexture(hpTexture);
+        hpTexture = nullptr;
+    }
+
+    lastHP = hp;
+    std::string hpText = std::to_string(hp);
+    SDL_Color color = {255, 255, 255, 255};
+
+    SDL_Surface* textSurface = TTF_RenderText_Solid(font, hpText.c_str(), color);
+    if (!textSurface) {
+        std::cerr << "TTF_RenderText_Solid Error: " << TTF_GetError() << std::endl;
+        return;
+    }
+
+    hpTexture = SDL_CreateTextureFromSurface(renderer, textSurface);
+    if (!hpTexture) {
+        std::cerr << "SDL_CreateTextureFromSurface Error: " << SDL_GetError() << std::endl;
+    }
+
+    hpRect = {950, 10, textSurface->w, textSurface->h};
+
+    SDL_FreeSurface(textSurface);
 }
 
 void Battle::render(SDL_Renderer* renderer) {
@@ -203,6 +293,12 @@ void Battle::render(SDL_Renderer* renderer) {
     if (backButton) backButton->render();
     if (towerManager) towerManager->render();
 
+    if (moneyTexture) {
+        SDL_RenderCopy(renderer, moneyTexture, nullptr, &moneyRect);
+    }
+    if (hpTexture) {
+        SDL_RenderCopy(renderer, hpTexture, nullptr, &hpRect);
+    }
     if (endGameModal && endGameModal->isVisible()) {
         endGameModal->render();
     }
@@ -213,7 +309,13 @@ void Battle::render(SDL_Renderer* renderer) {
 void Battle::update() {
     constexpr float deltaTime = 1.0f / 60.0f;
     auto gameState = GameState::getInstance();
+
     int money = gameState->getMoney();
+    updateMoneyTexture(route.getRenderer(), money);
+
+    int currentHp = enemyManager->getBaseHP();
+    updateHPTexture(route.getRenderer(), currentHp);
+
     if (gameState->isPaused() || (endGameModal && endGameModal->isVisible())) {
         return;
     }
@@ -244,8 +346,28 @@ void Battle::update() {
 
             gameState->setResult(GameResult::Lose);
             if (endGameModal) {
+                Route* routePtr = &route;
+
                 SDL_Texture* modalBg = IMG_LoadTexture(route.getRenderer(), "../assets/data/defeat.png");
                 endGameModal->setBackgroundTexture(modalBg);
+                Button* retryBtn = new Button(route.getRenderer(), 325, 745, 140, 40, "", font);
+                Button* menuBtn = new Button(route.getRenderer(), 470, 745, 140, 40, "", font);
+                Button* exitBtn = new Button(route.getRenderer(), 615, 745, 140, 40, "", font);
+                
+                retryBtn->setOnClick([this, routePtr]() {
+                    routePtr->setPage(new Battle(*routePtr, level));
+                });
+                menuBtn->setOnClick([this, routePtr]() {
+                    routePtr->setPage(new Battlefields(*routePtr));
+                });
+                exitBtn->setOnClick([]() {
+                    SDL_Event quitEvent;
+                    quitEvent.type = SDL_QUIT;
+                    SDL_PushEvent(&quitEvent);
+                });
+                endGameModal->addButton(retryBtn);
+                endGameModal->addButton(menuBtn);
+                endGameModal->addButton(exitBtn);
                 endGameModal->setVisible(true);
             }
             gameState->pause();
@@ -254,8 +376,30 @@ void Battle::update() {
         else if (enemyManager->isFinished()) {
             gameState->setResult(GameResult::Win);
             if (endGameModal) {
+                Route* routePtr = &route;
+
                 SDL_Texture* modalBg = IMG_LoadTexture(route.getRenderer(), "../assets/data/victory.png");
                 endGameModal->setBackgroundTexture(modalBg);
+
+                Button* nextLevelBtn = new Button(route.getRenderer(), 325, 700, 140, 40, "", font);
+                Button* retryBtn = new Button(route.getRenderer(), 490, 700, 140, 40, "", font);
+                Button* menuBtn = new Button(route.getRenderer(), 650, 700, 140, 40, "", font);
+                
+                nextLevelBtn->setOnClick([this, routePtr]() {
+                    routePtr->setPage(new Battle(*routePtr, level < maxLevel ? level + 1 : level));
+                });
+
+                retryBtn->setOnClick([this, routePtr]() {
+                    routePtr->setPage(new Battle(*routePtr, level));
+                });
+
+                menuBtn->setOnClick([routePtr]() {
+                    routePtr->setPage(new Battlefields(*routePtr));
+                });
+
+                endGameModal->addButton(nextLevelBtn);
+                endGameModal->addButton(retryBtn);
+                endGameModal->addButton(menuBtn);
                 endGameModal->setVisible(true);
             }
             gameState->pause();

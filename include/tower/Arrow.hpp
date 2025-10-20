@@ -14,8 +14,9 @@ private:
     bool active = true;
     Enemy* target;
     const int size = 32;
+    float damage = 50.0f; 
 public:
-    Arrow(SDL_Texture* texture, SDL_Point startPos, Enemy* target);
+    Arrow(SDL_Texture* texture, SDL_Point startPos, Enemy* target, float damage);
     void update(float deltaTime);
     void render(SDL_Renderer* renderer);
     bool isActive() const { return active; }

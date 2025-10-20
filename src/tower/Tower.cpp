@@ -4,12 +4,13 @@
 #include <math.h>
 #include <enemy/Enemy.hpp>
 
-Tower::Tower(SDL_Renderer* renderer, const std::string& imagePath, int x, int y, int w, int h) {
+Tower::Tower(SDL_Renderer* renderer, const std::string& imagePath, float damage, int x, int y, int w, int h) {
     texture = IMG_LoadTexture(renderer, imagePath.c_str());
     if (!texture) {
         std::cerr << "IMG_LoadTexture error: " << IMG_GetError() << std::endl;
     }
     rect = {x, y, w, h};
+    damage = damage;
 }
 
 Tower::~Tower() {
@@ -43,10 +44,18 @@ void Tower::update(float deltaTime, std::vector<Enemy*>& enemies, ArrowManager* 
         for (auto* enemy : enemies) {
             if (!enemy->isDead() && isEnemyInRange(enemy)) {
                 SDL_Point startPos = getCenter();
-                arrowManager->spawnArrow(startPos, enemy);
+                arrowManager->spawnArrow(startPos, enemy, damage);
                 timeSinceLastShot = 0.0f;
                 break;
             }
         }
     }
+}
+
+void Tower::setPrice(int price) {
+    price = price;
+}
+
+int Tower::getPrice() {
+    return price;
 }

@@ -3,8 +3,8 @@
 #include <iostream>
 #include <algorithm>
 
-EnemyManager::EnemyManager(SDL_Renderer* renderer, const std::vector<SDL_Point>& path, GameState* gameState)
-    : renderer(renderer), enemyPath(path), gameState(gameState) {
+EnemyManager::EnemyManager(SDL_Renderer* renderer, const std::vector<SDL_Point>& path)
+    : renderer(renderer), enemyPath(path) {
 }
 
 void EnemyManager::addWave(const Wave& wave) {
@@ -101,7 +101,7 @@ void EnemyManager::update(float deltaTime) {
     int totalMoneyGained = 0;
     for (const auto& enemy : enemies) {
         if (enemy->isDead()) {
-            totalMoneyGained += 100;  // hoặc thay đổi số tiền tùy theo loại enemy
+            totalMoneyGained += 100;
         }
     }
 
@@ -135,6 +135,10 @@ const std::vector<std::unique_ptr<Enemy>>& EnemyManager::getEnemies() const {
     return enemies;
 }
 
+void EnemyManager::setBaseHP(int hp) {
+    baseHP = hp;
+}
+
 int EnemyManager::getBaseHP() const {
     return baseHP;
 }
@@ -145,4 +149,8 @@ bool EnemyManager::isGameOver() const {
 
 bool EnemyManager::isFinished() const {
     return currentState == State::FINISHED;
+}
+
+void EnemyManager::setGameState(GameState* gs) {
+    this->gameState = gs;
 }

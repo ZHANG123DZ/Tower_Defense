@@ -18,6 +18,16 @@
 
 class Battle : public Page {
 private:
+    // Money
+    SDL_Texture* moneyTexture = nullptr;
+    SDL_Rect moneyRect;
+    int lastMoney = -1;
+
+    // HP
+    SDL_Texture* hpTexture = nullptr;
+    SDL_Rect hpRect;
+    int lastHP = -1; 
+
     Modal* endGameModal = nullptr;
     GameState* gameState = nullptr;
     Route& route;
@@ -29,8 +39,9 @@ private:
     SDL_Texture* arrowTexture = nullptr;
     Map* map = nullptr;
     EnemyManager* enemyManager = nullptr;
-     TTF_Font* font = nullptr;
+    TTF_Font* font = nullptr;
     int level;
+    int maxLevel = 4;
 
 public:
     Battle(Route& route, int level);
@@ -39,4 +50,7 @@ public:
     void render(SDL_Renderer* renderer) override;
     void handleEvent(SDL_Event& e) override;
     void update() override;
+
+    void updateMoneyTexture(SDL_Renderer* renderer, int money);
+    void updateHPTexture(SDL_Renderer* renderer, int hp);
 };

@@ -11,6 +11,7 @@ class TowerManager {
 private:
     SDL_Renderer* renderer;
     std::vector<Button*> towerButtons;
+    std::vector<int> prices;
     SDL_Texture* frameTexture = nullptr;
     int selectedTowerIndex = -1;
     TTF_Font* font;
@@ -21,6 +22,7 @@ public:
 
     void loadTowers(const std::vector<std::string>& towerImages);
     void setFrameTexture(SDL_Texture* texture);
+    void setPrices(const std::vector<int>& newPrices);
 
     void handleEvent(SDL_Event& e);
     // void update();

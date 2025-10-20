@@ -54,6 +54,10 @@ Modal::~Modal() {
     if (backgroundTexture) {
         SDL_DestroyTexture(backgroundTexture);
     }
+    for (auto btn : buttons) {
+        delete btn;
+    }
+    buttons.clear();
 }
 
 void Modal::updateMessageTexture() {
@@ -76,6 +80,10 @@ void Modal::updateMessageTexture() {
 
 void Modal::render() {
     if (!visible) return;
+
+    for (auto& btn : buttons) {
+        btn->render();
+    }
 
     if (backgroundTexture) {
         int texW, texH;
@@ -125,6 +133,9 @@ void Modal::handleEvent(const SDL_Event& e) {
     if (hasCloseButton && closeButton) {
         closeButton->handleEvent(e);
     }
+    for (auto& btn : buttons) {
+        btn->handleEvent(e);
+    }
 }
 
 void Modal::applyStyle(const ModalStyleConfig& config) {
@@ -158,4 +169,8 @@ void Modal::setText(const std::string& newMessage) {
 
 const std::string& Modal::getText() const {
     return message;
+}
+
+void Modal::addButton(Button* button) {
+    buttons.push_back(button);
 }
