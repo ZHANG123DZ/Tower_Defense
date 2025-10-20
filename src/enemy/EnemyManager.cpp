@@ -1,10 +1,10 @@
 #include <enemy/EnemyManager.hpp>
+#include <core/GameState.hpp>
 #include <iostream>
 #include <algorithm>
 
-EnemyManager::EnemyManager(SDL_Renderer* renderer, const std::vector<SDL_Point>& path)
-    : renderer(renderer), enemyPath(path) {
-    // Khởi tạo các giá trị ban đầu nếu cần
+EnemyManager::EnemyManager(SDL_Renderer* renderer, const std::vector<SDL_Point>& path, GameState* gameState)
+    : renderer(renderer), enemyPath(path), gameState(gameState) {
 }
 
 void EnemyManager::addWave(const Wave& wave) {
@@ -17,9 +17,6 @@ void EnemyManager::setEnemyTexture(SDL_Texture* tex) {
 
 void EnemyManager::start() {
     if (!waves.empty() && currentState == State::WAITING_TO_START) {
-        std::cout << "[Manager] Starting the first wave sequence." << std::endl;
-        // Bắt đầu ngay wave đầu tiên bằng cách chuyển sang trạng thái nghỉ
-        // và đặt timer để nó kích hoạt ngay lập tức
         currentState = State::BETWEEN_WAVES;
         interWaveTimer = timeBetweenWaves; 
     }
@@ -29,7 +26,6 @@ void EnemyManager::startNextWave() {
     currentWaveIndex++;
     if (currentWaveIndex >= (int)waves.size()) {
         currentState = State::FINISHED;
-        std::cout << "[Manager] All waves have been cleared!" << std::endl;
         return;
     }
 
@@ -37,10 +33,6 @@ void EnemyManager::startNextWave() {
     enemiesSpawnedThisWave = 0;
     spawnTimer = 0.0f;
     currentState = State::SPAWNING_WAVE;
-
-    std::cout << "========================================" << std::endl;
-    std::cout << "[Manager] Starting Wave " << currentWaveIndex + 1 << "/" << waves.size() << std::endl;
-    std::cout << "========================================" << std::endl;
 }
 
 void EnemyManager::spawnEnemy() {
@@ -55,7 +47,9 @@ void EnemyManager::spawnEnemy() {
 }
 
 void EnemyManager::update(float deltaTime) {
-    if (isGameOver()) return;
+    if (isGameOver()) {
+        return;
+    }
 
     // Quản lý trạng thái của manager
     switch (currentState) {
@@ -72,7 +66,7 @@ void EnemyManager::update(float deltaTime) {
 
         case State::SPAWNING_WAVE: {
             const Wave& currentWave = waves[currentWaveIndex];
-            
+
             // Logic sinh quái
             if (enemiesSpawnedThisWave < currentWave.enemyCount) {
                 spawnTimer += deltaTime;
@@ -83,12 +77,11 @@ void EnemyManager::update(float deltaTime) {
                 }
             }
             // Kiểm tra khi nào wave kết thúc
-            else if (enemies.empty()) { // Đã spawn hết và không còn con nào sống
-                std::cout << "[Manager] Wave " << currentWaveIndex + 1 << " completed." << std::endl;
-                if (currentWaveIndex >= (int)waves.size() - 1) {
-                    currentState = State::FINISHED; // Sóng cuối cùng đã xong
+            else if (enemies.empty()) {
+                if (currentWaveIndex >= static_cast<int>(waves.size()) - 1) {
+                    currentState = State::FINISHED;
                 } else {
-                    currentState = State::BETWEEN_WAVES; // Chuyển sang trạng thái nghỉ
+                    currentState = State::BETWEEN_WAVES;
                     interWaveTimer = 0.0f;
                 }
             }
@@ -96,33 +89,40 @@ void EnemyManager::update(float deltaTime) {
         }
 
         case State::FINISHED:
-            // Tất cả các wave đã hoàn thành
             break;
     }
 
-    // Cập nhật và xóa kẻ địch (luôn chạy trừ khi game đã xong)
+    // Cập nhật enemy
     for (auto& enemy : enemies) {
         enemy->update(deltaTime);
     }
 
-    // Xóa những kẻ địch đã chết hoặc đã đến đích
+    // === Cộng tiền trước khi xóa ===
+    int totalMoneyGained = 0;
+    for (const auto& enemy : enemies) {
+        if (enemy->isDead()) {
+            totalMoneyGained += 100;  // hoặc thay đổi số tiền tùy theo loại enemy
+        }
+    }
+
+    if (totalMoneyGained > 0 && gameState) {
+        gameState->addMoney(totalMoneyGained);
+    }
+
+    // === Xóa enemy đã chết hoặc đến đích ===
     enemies.erase(
         std::remove_if(enemies.begin(), enemies.end(),
             [this](const std::unique_ptr<Enemy>& e) {
                 if (e->reachedEnd()) {
                     this->baseHP--;
-                    std::cout << "[Game] An enemy reached the base! HP left: " << this->baseHP << std::endl;
                     return true;
                 }
-                if (e->isDead()) {
-                    // Có thể thêm logic cộng tiền ở đây hoặc trả về số lượng bị giết
-                    return true;
-                }
-                return false;
+                return e->isDead();
             }),
         enemies.end()
     );
 }
+
 
 void EnemyManager::render() {
     for (auto& e : enemies) {

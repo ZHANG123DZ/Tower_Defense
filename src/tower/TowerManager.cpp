@@ -1,11 +1,17 @@
 #include <tower/TowerManager.hpp>
 #include <iostream>
+#include <algorithm>
+#include <tower/Tower.hpp>
 
 TowerManager::TowerManager(SDL_Renderer* renderer, TTF_Font* font)
     : renderer(renderer), font(font) {}
 
 TowerManager::~TowerManager() {
     for (auto* btn : towerButtons) delete btn;
+    for (auto* tower : towers) {
+        delete tower;
+    }
+    towers.clear();
 }
 
 void TowerManager::setFrameTexture(SDL_Texture* texture) {
@@ -63,8 +69,31 @@ void TowerManager::render() {
             SDL_RenderCopy(renderer, frameTexture, nullptr, &rect);
         }
     }
+    for (Tower* tower : towers) {
+        if (tower) {
+            tower->render(renderer);
+        }
+    }
 }
 
 int TowerManager::getSelectedTower() const {
     return selectedTowerIndex;
+}
+
+void TowerManager::addTower(Tower* tower) {
+    if (tower) {
+        towers.push_back(tower);
+    }
+}
+
+void TowerManager::removeTower(Tower* tower) {
+    auto it = std::find(towers.begin(), towers.end(), tower);
+    if (it != towers.end()) {
+        delete *it;              
+        towers.erase(it);        
+    }
+}
+
+std::vector<Tower*> TowerManager::getTowers() {
+    return towers;
 }

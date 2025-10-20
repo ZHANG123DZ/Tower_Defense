@@ -22,11 +22,13 @@ public:
     void setOnClose(std::function<void()> callback);
     void setVisible(bool isVisible);
     bool isVisible() const;
-
+    
+    void setBackgroundTexture(SDL_Texture* texture);
     void setText(const std::string& newMessage);
     const std::string& getText() const;
 
 private:
+    SDL_Texture* backgroundTexture = nullptr;
     SDL_Renderer* renderer;
     TTF_Font* font;
     SDL_Texture* messageTexture = nullptr;

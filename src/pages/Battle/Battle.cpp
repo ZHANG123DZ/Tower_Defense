@@ -4,6 +4,8 @@
 #include <ui/Button.hpp>
 #include <core/GameState.hpp>
 #include <iostream>
+#include <fstream>
+#include <vector> 
 
 Battle::~Battle() {
     if (texture) SDL_DestroyTexture(texture);
@@ -20,9 +22,6 @@ Battle::~Battle() {
     Mix_CloseAudio();
 }
 
-// =================================================================
-// HÀM KHỞI TẠO (CONSTRUCTOR)
-// =================================================================
 Battle::Battle(Route& route, int level)
     : route(route), level(level),
       texture(nullptr), arrowTexture(nullptr),
@@ -30,13 +29,13 @@ Battle::Battle(Route& route, int level)
       enemyManager(nullptr), endGameModal(nullptr),
       backButton(nullptr), map(nullptr)
 {
-    // === SỬA LỖI FONT: Gán vào biến thành viên, không tạo biến cục bộ nữa ===
+    // ===== TẢI FONT =====
     font = TTF_OpenFont("../assets/fonts/Roboto-Regular.ttf", 24);
     if (!font) {
         std::cerr << "TTF_OpenFont Error: " << TTF_GetError() << std::endl;
     }
 
-    // === Tải tài nguyên đồ họa và âm thanh ===
+    // ===== TẢI NỀN BẢN ĐỒ =====
     SDL_Surface* surface = IMG_Load("../assets/maps/map.jpg");
     if (!surface) {
         std::cerr << "IMG_Load Error: " << IMG_GetError() << std::endl;
@@ -45,12 +44,13 @@ Battle::Battle(Route& route, int level)
         SDL_FreeSurface(surface);
     }
 
+    // ===== ÂM THANH =====
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
         std::cerr << "Mix_OpenAudio Error: " << Mix_GetError() << std::endl;
     }
     Arrow::loadHitSound("../assets/music/arrow_hit.mp3");
 
-    // === Khởi tạo các thành phần giao diện (UI) ===
+    // ===== NÚT QUAY LẠI =====
     ButtonStyleConfig styleBtn;
     styleBtn.borderColor = {0, 0, 0, 0};
     backButton = new Button(route.getRenderer(), 65, 900, 165, 60, "", font);
@@ -61,14 +61,14 @@ Battle::Battle(Route& route, int level)
         route.setPage(new Battlefields(route));
     });
 
-    endGameModal = new Modal(route.getRenderer(), font, "", false, 400, 250);
-    endGameModal->applyStyle({{139, 69, 19, 230}, {0, 0, 0, 100}});
+    // ===== MODAL KẾT THÚC GAME =====
+    endGameModal = new Modal(route.getRenderer(), font, "", false, 549, 455);
     endGameModal->setOnClose([this, &route]() {
         route.setPage(new Battlefields(route));
     });
     endGameModal->setVisible(false);
 
-    // === Khởi tạo các Manager của game ===
+    // ===== TOWER MANAGER =====
     towerManager = new TowerManager(route.getRenderer(), font);
     SDL_Texture* frameTex = IMG_LoadTexture(route.getRenderer(), "../assets/tower/frameTower.png");
     towerManager->setFrameTexture(frameTex);
@@ -79,32 +79,65 @@ Battle::Battle(Route& route, int level)
         "../assets/tower/machineTower.png"
     });
 
+    // ===== ARROW MANAGER =====
     arrowManager = new ArrowManager();
     arrowTexture = IMG_LoadTexture(route.getRenderer(), "../assets/arrow/arrow.png");
     arrowManager->setArrowTexture(arrowTexture);
 
+    // ===== MAP MANAGER =====
     map = new Map(route.getRenderer(), "../assets/maps/map.jpg", 128, 128, 8);
-    map->loadMap({
-        {0,0,0,0,0,0,0,0},
-        {0,0,0,0,0,0,0,0},
-        {1,1,1,1,1,1,1,1},
-        {2,2,2,2,2,2,2,2},
-        {1,1,1,1,1,1,1,1},
-        {0,0,0,0,0,0,0,0},
-    });
 
-    // === SỬA LỖI LOGIC: Cấu hình và khởi động EnemyManager phiên bản mới ===
-    // 1. Khởi tạo EnemyManager với đường đi
-    enemyManager = new EnemyManager(route.getRenderer(), {
-        {0,512},{128,512},{256,512},{384,512},{512,512},{640,512},{768,512},{896,512}
-    });
+    // Load map từ file
+    std::ifstream mapFile("../assets/maps/map.txt");
+    if (!mapFile.is_open()) {
+        std::cerr << "Failed to open map.txt" << std::endl;
+    } else {
+        int cols, rows;
+        mapFile >> cols >> rows;
+        std::vector<std::vector<int>> mapData(rows, std::vector<int>(cols));
+        for (int y = 0; y < rows; ++y)
+            for (int x = 0; x < cols; ++x)
+                mapFile >> mapData[y][x];
+        map->loadMap(mapData);
+        mapFile.close();
+    }
 
-    // 2. Thêm các đợt quái (wave)
-    enemyManager->addWave({.enemyCount = 5, .spawnInterval = 0.5f, .enemyHP = 100.0f, .enemySpeed = 80.0f});
-    enemyManager->addWave({.enemyCount = 10, .spawnInterval = 0.4f, .enemyHP = 120.0f, .enemySpeed = 90.0f});
-    enemyManager->addWave({.enemyCount = 15, .spawnInterval = 0.3f, .enemyHP = 150.0f, .enemySpeed = 100.0f});
+    // ===== LOAD ROUTE =====
+    std::ifstream routeFile("../assets/route/route.txt");
+    std::vector<SDL_Point> routePoints;
+    int x, y;
 
-    // 3. Gán texture cho kẻ địch
+    if (!routeFile.is_open()) {
+        std::cerr << "Failed to open route.txt" << std::endl;
+    } else {
+        while (routeFile >> x >> y) {
+            routePoints.push_back({x, y});
+        }
+        routeFile.close();
+    }
+
+    enemyManager = new EnemyManager(route.getRenderer(), routePoints, gameState);
+
+
+    // ===== LOAD WAVES =====
+    std::ifstream waveFile("../assets/waves/waves.txt");
+    if (!waveFile.is_open()) {
+        std::cerr << "Failed to open waves.txt" << std::endl;
+    } else {
+        int enemyCount;
+        float spawnInterval, enemyHP, enemySpeed;
+        while (waveFile >> enemyCount >> spawnInterval >> enemyHP >> enemySpeed) {
+            enemyManager->addWave({
+                .enemyCount = enemyCount,
+                .spawnInterval = spawnInterval,
+                .enemyHP = enemyHP,
+                .enemySpeed = enemySpeed
+            });
+        }
+        waveFile.close();
+    }
+
+    // ===== TEXTURE KẺ ĐỊCH =====
     SDL_Surface* enemySurface = IMG_Load("../assets/tower/woodTower.png");
     if (!enemySurface) {
         std::cerr << "Failed to load enemy image: " << IMG_GetError() << std::endl;
@@ -114,14 +147,13 @@ Battle::Battle(Route& route, int level)
         enemyManager->setEnemyTexture(enemyTexture);
     }
 
-    // 4. BẮT ĐẦU chuỗi wave tự động
+    // ===== BẮT ĐẦU GAME =====
     enemyManager->start();
-
-    // === Thiết lập trạng thái ban đầu của game ===
-    GameState::getInstance()->resume(); 
+    GameState::getInstance()->pause(); 
     GameState::getInstance()->setResult(GameResult::None);
-    std::cout << "[Battle] Game state has been set to RUNNING." << std::endl;
+    GameState::getInstance()->setPaused(false);
 }
+
 
 void Battle::handleEvent(SDL_Event& e) {
     if (endGameModal && endGameModal->isVisible()) {
@@ -155,7 +187,7 @@ void Battle::handleEvent(SDL_Event& e) {
                     links[selectTower],
                     dest.x, dest.y, dest.w, dest.h
                 );
-                towers.push_back(newTower);
+                towerManager->addTower(newTower);
                 clicked->setHasTower(true);
             }
         }
@@ -164,9 +196,8 @@ void Battle::handleEvent(SDL_Event& e) {
 
 void Battle::render(SDL_Renderer* renderer) {
     SDL_RenderCopy(renderer, texture, nullptr, nullptr);
-
+    
     if (map) map->render();
-    for (auto* tower : towers) tower->render(renderer);
     if (arrowManager) arrowManager->render(renderer);
     if (enemyManager) enemyManager->render();
     if (backButton) backButton->render();
@@ -179,20 +210,17 @@ void Battle::render(SDL_Renderer* renderer) {
     SDL_RenderPresent(renderer);
 }
 
-// =================================================================
-// HÀM UPDATE
-// =================================================================
 void Battle::update() {
     constexpr float deltaTime = 1.0f / 60.0f;
     auto gameState = GameState::getInstance();
-
+    int money = gameState->getMoney();
     if (gameState->isPaused() || (endGameModal && endGameModal->isVisible())) {
         return;
     }
-
+    
     // Cập nhật tất cả các manager
     if (arrowManager) arrowManager->update(deltaTime);
-    // if (towerManager) towerManager->update(deltaTime); // Nếu có
+    // if (towerManager) towerManager->update(deltaTime);
     if (enemyManager) enemyManager->update(deltaTime);
 
     // Lấy danh sách quái để cho tower tấn công
@@ -204,6 +232,7 @@ void Battle::update() {
     }
 
     // Tower tấn công
+    auto towers = towerManager->getTowers(); 
     for (auto* tower : towers) {
         tower->update(deltaTime, enemiesView, arrowManager);
     }
@@ -212,9 +241,11 @@ void Battle::update() {
     if (gameState->getResult() == GameResult::None) {
         // Điều kiện thua
         if (enemyManager->isGameOver()) {
+
             gameState->setResult(GameResult::Lose);
             if (endGameModal) {
-                endGameModal->setText("You Lose!");
+                SDL_Texture* modalBg = IMG_LoadTexture(route.getRenderer(), "../assets/data/defeat.png");
+                endGameModal->setBackgroundTexture(modalBg);
                 endGameModal->setVisible(true);
             }
             gameState->pause();
@@ -223,7 +254,8 @@ void Battle::update() {
         else if (enemyManager->isFinished()) {
             gameState->setResult(GameResult::Win);
             if (endGameModal) {
-                endGameModal->setText("You Win!");
+                SDL_Texture* modalBg = IMG_LoadTexture(route.getRenderer(), "../assets/data/victory.png");
+                endGameModal->setBackgroundTexture(modalBg);
                 endGameModal->setVisible(true);
             }
             gameState->pause();

@@ -469,6 +469,7 @@ CMakeFiles/TowerDefense.dir/src/core/Map.cpp.obj: C:/Users/Admin/TowerDefense2/s
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_thread.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_timer.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_touch.h \
+  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_ttf.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_version.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_video.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/begin_code.h \
@@ -1165,6 +1166,7 @@ CMakeFiles/TowerDefense.dir/src/enemy/EnemyManager.cpp.obj: C:/Users/Admin/Tower
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_video.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/begin_code.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/close_code.h \
+  C:/Users/Admin/TowerDefense2/include/core/GameState.hpp \
   C:/Users/Admin/TowerDefense2/include/enemy/Enemy.hpp \
   C:/Users/Admin/TowerDefense2/include/enemy/EnemyManager.hpp \
   C:/msys64/ucrt64/include/_mingw.h \
@@ -1257,6 +1259,7 @@ CMakeFiles/TowerDefense.dir/src/enemy/EnemyManager.cpp.obj: C:/Users/Admin/Tower
   C:/msys64/ucrt64/include/c++/15.2.0/clocale \
   C:/msys64/ucrt64/include/c++/15.2.0/concepts \
   C:/msys64/ucrt64/include/c++/15.2.0/cstddef \
+  C:/msys64/ucrt64/include/c++/15.2.0/cstdint \
   C:/msys64/ucrt64/include/c++/15.2.0/cstdio \
   C:/msys64/ucrt64/include/c++/15.2.0/cstdlib \
   C:/msys64/ucrt64/include/c++/15.2.0/cwchar \
@@ -1877,6 +1880,7 @@ CMakeFiles/TowerDefense.dir/src/pages/Battle/Battle.cpp.obj: C:/Users/Admin/Towe
   C:/msys64/ucrt64/include/c++/15.2.0/bits/basic_string.tcc \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/char_traits.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/charconv.h \
+  C:/msys64/ucrt64/include/c++/15.2.0/bits/codecvt.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/concept_check.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/cpp_type_traits.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/cxxabi_forced.h \
@@ -1886,6 +1890,7 @@ CMakeFiles/TowerDefense.dir/src/pages/Battle/Battle.cpp.obj: C:/Users/Admin/Towe
   C:/msys64/ucrt64/include/c++/15.2.0/bits/exception.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/exception_defines.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/exception_ptr.h \
+  C:/msys64/ucrt64/include/c++/15.2.0/bits/fstream.tcc \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/functexcept.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/functional_hash.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/hash_bytes.h \
@@ -1966,6 +1971,7 @@ CMakeFiles/TowerDefense.dir/src/pages/Battle/Battle.cpp.obj: C:/Users/Admin/Towe
   C:/msys64/ucrt64/include/c++/15.2.0/ext/numeric_traits.h \
   C:/msys64/ucrt64/include/c++/15.2.0/ext/string_conversions.h \
   C:/msys64/ucrt64/include/c++/15.2.0/ext/type_traits.h \
+  C:/msys64/ucrt64/include/c++/15.2.0/fstream \
   C:/msys64/ucrt64/include/c++/15.2.0/functional \
   C:/msys64/ucrt64/include/c++/15.2.0/initializer_list \
   C:/msys64/ucrt64/include/c++/15.2.0/ios \
@@ -1991,8 +1997,10 @@ CMakeFiles/TowerDefense.dir/src/pages/Battle/Battle.cpp.obj: C:/Users/Admin/Towe
   C:/msys64/ucrt64/include/c++/15.2.0/unordered_map \
   C:/msys64/ucrt64/include/c++/15.2.0/vector \
   C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/atomic_word.h \
+  C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/basic_file.h \
   C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++allocator.h \
   C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++config.h \
+  C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++io.h \
   C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++locale.h \
   C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/cpu_defines.h \
   C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/ctype_base.h \
@@ -4285,6 +4293,7 @@ CMakeFiles/TowerDefense.dir/src/tower/TowerManager.cpp.obj: C:/Users/Admin/Tower
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_log.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_main.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_messagebox.h \
+  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_mixer.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_mouse.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_mutex.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_pixels.h \
@@ -4306,6 +4315,10 @@ CMakeFiles/TowerDefense.dir/src/tower/TowerManager.cpp.obj: C:/Users/Admin/Tower
   C:/Users/Admin/TowerDefense2/include/SDL2/SDL_video.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/begin_code.h \
   C:/Users/Admin/TowerDefense2/include/SDL2/close_code.h \
+  C:/Users/Admin/TowerDefense2/include/enemy/Enemy.hpp \
+  C:/Users/Admin/TowerDefense2/include/tower/Arrow.hpp \
+  C:/Users/Admin/TowerDefense2/include/tower/ArrowManager.hpp \
+  C:/Users/Admin/TowerDefense2/include/tower/Tower.hpp \
   C:/Users/Admin/TowerDefense2/include/tower/TowerManager.hpp \
   C:/Users/Admin/TowerDefense2/include/ui/Button.hpp \
   C:/msys64/ucrt64/include/_mingw.h \
@@ -4315,9 +4328,11 @@ CMakeFiles/TowerDefense.dir/src/tower/TowerManager.cpp.obj: C:/Users/Admin/Tower
   C:/msys64/ucrt64/include/_mingw_stat64.h \
   C:/msys64/ucrt64/include/_mingw_stdarg.h \
   C:/msys64/ucrt64/include/_timeval.h \
+  C:/msys64/ucrt64/include/c++/15.2.0/algorithm \
   C:/msys64/ucrt64/include/c++/15.2.0/array \
   C:/msys64/ucrt64/include/c++/15.2.0/backward/binders.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bit \
+  C:/msys64/ucrt64/include/c++/15.2.0/bits/algorithmfwd.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/alloc_traits.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/allocator.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/basic_ios.h \
@@ -4365,20 +4380,24 @@ CMakeFiles/TowerDefense.dir/src/tower/TowerManager.cpp.obj: C:/Users/Admin/Tower
   C:/msys64/ucrt64/include/c++/15.2.0/bits/requires_hosted.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/std_abs.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/std_function.h \
+  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_algo.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_algobase.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_bvector.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_construct.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_function.h \
+  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_heap.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_iterator.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_iterator_base_funcs.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_iterator_base_types.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_pair.h \
+  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_tempbuf.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_uninitialized.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_vector.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/streambuf.tcc \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/streambuf_iterator.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/string_view.tcc \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/stringfwd.h \
+  C:/msys64/ucrt64/include/c++/15.2.0/bits/uniform_int_dist.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/unordered_map.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/uses_allocator.h \
   C:/msys64/ucrt64/include/c++/15.2.0/bits/uses_allocator_args.h \
@@ -4412,6 +4431,8 @@ CMakeFiles/TowerDefense.dir/src/tower/TowerManager.cpp.obj: C:/Users/Admin/Tower
   C:/msys64/ucrt64/include/c++/15.2.0/istream \
   C:/msys64/ucrt64/include/c++/15.2.0/new \
   C:/msys64/ucrt64/include/c++/15.2.0/ostream \
+  C:/msys64/ucrt64/include/c++/15.2.0/pstl/execution_defs.h \
+  C:/msys64/ucrt64/include/c++/15.2.0/pstl/glue_algorithm_defs.h \
   C:/msys64/ucrt64/include/c++/15.2.0/pstl/pstl_config.h \
   C:/msys64/ucrt64/include/c++/15.2.0/stdexcept \
   C:/msys64/ucrt64/include/c++/15.2.0/stdlib.h \
@@ -4458,6 +4479,7 @@ CMakeFiles/TowerDefense.dir/src/tower/TowerManager.cpp.obj: C:/Users/Admin/Tower
   C:/msys64/ucrt64/include/sdks/_mingw_ddk.h \
   C:/msys64/ucrt64/include/sec_api/stdio_s.h \
   C:/msys64/ucrt64/include/sec_api/stdlib_s.h \
+  C:/msys64/ucrt64/include/sec_api/string_s.h \
   C:/msys64/ucrt64/include/sec_api/sys/timeb_s.h \
   C:/msys64/ucrt64/include/sec_api/wchar_s.h \
   C:/msys64/ucrt64/include/setjmp.h \
@@ -4467,6 +4489,7 @@ CMakeFiles/TowerDefense.dir/src/tower/TowerManager.cpp.obj: C:/Users/Admin/Tower
   C:/msys64/ucrt64/include/stdint.h \
   C:/msys64/ucrt64/include/stdio.h \
   C:/msys64/ucrt64/include/stdlib.h \
+  C:/msys64/ucrt64/include/string.h \
   C:/msys64/ucrt64/include/swprintf.inl \
   C:/msys64/ucrt64/include/sys/timeb.h \
   C:/msys64/ucrt64/include/sys/types.h \
@@ -5299,6 +5322,8 @@ C:/Users/Admin/TowerDefense2/include/SDL2/SDL_events.h:
 
 C:/Users/Admin/TowerDefense2/src/core/Game.cpp:
 
+C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++io.h:
+
 C:/Users/Admin/TowerDefense2/include/SDL2/SDL_assert.h:
 
 C:/Users/Admin/TowerDefense2/include/SDL2/SDL_audio.h:
@@ -5727,6 +5752,8 @@ C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/adxintrin.h:
 
 C:/msys64/ucrt64/include/c++/15.2.0/debug/debug.h:
 
+C:/msys64/ucrt64/include/c++/15.2.0/bits/codecvt.h:
+
 C:/Users/Admin/TowerDefense2/include/pages/Battle.hpp:
 
 C:/msys64/ucrt64/lib/gcc/x86_64-w64-mingw32/15.2.0/include/amxbf16intrin.h:
@@ -6110,6 +6137,12 @@ C:/Users/Admin/TowerDefense2/include/enemy/EnemyManager.hpp:
 C:/Users/Admin/TowerDefense2/include/tower/Arrow.hpp:
 
 C:/Users/Admin/TowerDefense2/include/tower/Tower.hpp:
+
+C:/msys64/ucrt64/include/c++/15.2.0/bits/fstream.tcc:
+
+C:/msys64/ucrt64/include/c++/15.2.0/fstream:
+
+C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/basic_file.h:
 
 C:/msys64/ucrt64/include/c++/15.2.0/numeric:
 

@@ -22,7 +22,6 @@ public:
     bool isWin() const;
     bool isLose() const;
     void pause();
-    void resume();
     void setPaused(bool state);
     bool isPaused() const;
     void showEndGameModal();

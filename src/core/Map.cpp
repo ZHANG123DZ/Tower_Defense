@@ -97,15 +97,3 @@ SDL_Rect Map::getDestRect(int row, int col) {
     dest.h = tileHeight;
     return dest;
 }
-
-void Map::handleClick(int mouseX, int mouseY) {
-    int col = (mouseX) / tileWidth;
-    int row = (mouseY) / tileHeight;
-
-    if (row >= 0 && row < rows && col >= 0 && col < cols) {
-        std::unique_ptr<Tile>& tile = tiles[row][col];
-        if (tile) {
-            tile->onEnter();
-        }
-    }
-}

@@ -51,6 +51,9 @@ Modal::~Modal() {
         delete closeButton;
         closeButton = nullptr;
     }
+    if (backgroundTexture) {
+        SDL_DestroyTexture(backgroundTexture);
+    }
 }
 
 void Modal::updateMessageTexture() {
@@ -74,6 +77,18 @@ void Modal::updateMessageTexture() {
 void Modal::render() {
     if (!visible) return;
 
+    if (backgroundTexture) {
+        int texW, texH;
+        SDL_QueryTexture(backgroundTexture, nullptr, nullptr, &texW, &texH);
+
+        SDL_Rect dstRect = {
+            modalRect.x + 20,
+            modalRect.y + 60,
+            texW,
+            texH
+        };
+        SDL_RenderCopy(renderer, backgroundTexture, nullptr, &dstRect);
+    }
     SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 
     // Nền mờ (backdrop)
@@ -127,6 +142,13 @@ void Modal::setVisible(bool isVisible) {
 
 bool Modal::isVisible() const {
     return visible;
+}
+
+void Modal::setBackgroundTexture(SDL_Texture* texture) {
+    if (backgroundTexture) {
+        SDL_DestroyTexture(backgroundTexture);
+    }
+    backgroundTexture = texture;
 }
 
 void Modal::setText(const std::string& newMessage) {

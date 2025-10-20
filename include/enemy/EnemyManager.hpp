@@ -3,7 +3,8 @@
 #include <SDL2/SDL.h>
 #include <vector>
 #include <memory>
-#include "Enemy.hpp" // Đảm bảo bạn đã include đúng đường dẫn tới file Enemy.hpp
+#include <enemy/Enemy.hpp>
+#include <core/GameState.hpp>
 
 // Dùng lại struct Wave của bạn, rất hợp lý
 struct Wave {
@@ -15,7 +16,7 @@ struct Wave {
 
 class EnemyManager {
 public:
-    EnemyManager(SDL_Renderer* renderer, const std::vector<SDL_Point>& path);
+    EnemyManager(SDL_Renderer* renderer, const std::vector<SDL_Point>& path, GameState* gamaState);
     ~EnemyManager() = default;
 
     // --- Cấu hình ---
@@ -51,6 +52,7 @@ private:
     std::vector<SDL_Point> enemyPath;
     std::vector<Wave> waves;
     std::vector<std::unique_ptr<Enemy>> enemies;
+    GameState* gameState = nullptr; 
 
     // Trạng thái và điều khiển Wave
     State currentState = State::WAITING_TO_START;
@@ -63,5 +65,5 @@ private:
     int enemiesSpawnedThisWave = 0;
     
     // Trạng thái người chơi
-    int baseHP = 20;
+    int baseHP = 1;
 };

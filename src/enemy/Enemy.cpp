@@ -15,30 +15,20 @@ Enemy::Enemy(SDL_Renderer* renderer, const std::vector<SDL_Point>& path, float h
     // Khởi tạo vị trí ban đầu tại điểm đầu tiên của path
     currentPosition = path[0];
     rect = { currentPosition.x - SIZE / 2, currentPosition.y - SIZE / 2, SIZE, SIZE };
-
-    // In log spawn
-    std::cout << "[Enemy] ✅ Spawned | Pos=(" << currentPosition.x << "," << currentPosition.y
-              << ") | HP=" << hp << " | Speed=" << speed << std::endl;
 }
 
 Enemy::~Enemy() {}
 
 void Enemy::setTexture(SDL_Texture* tex) {
     texture = tex;
-    if (texture)
-        std::cout << "[Enemy] Texture assigned successfully." << std::endl;
-    else
-        std::cerr << "[Enemy] ⚠️ Texture is NULL!" << std::endl;
 }
 
 void Enemy::update(float deltaTime) {
     // Nếu chết hoặc đến đích thì không di chuyển nữa
     if (isDead()) {
-        std::cout << "[Enemy] 💀 Dead, skipping update." << std::endl;
         return;
     }
     if (reachedEnd()) {
-        std::cout << "[Enemy] 🏁 Reached end of path." << std::endl;
         return;
     }
 
@@ -58,7 +48,6 @@ void Enemy::moveToNextWaypoint(float deltaTime) {
     if (distance < 1.0f) {
         currentPathIndex++;
         if (currentPathIndex >= path.size() - 1) {
-            std::cout << "[Enemy] 🏁 Arrived at final waypoint." << std::endl;
             return;
         }
         target = path[currentPathIndex + 1];
@@ -79,19 +68,11 @@ void Enemy::moveToNextWaypoint(float deltaTime) {
 
     rect.x = currentPosition.x - SIZE / 2;
     rect.y = currentPosition.y - SIZE / 2;
-
-    std::cout << "[Enemy] 🚶 Moving | Index=" << currentPathIndex
-              << " | Pos=(" << currentPosition.x << "," << currentPosition.y << ")"
-              << " | Target=(" << target.x << "," << target.y << ")"
-              << " | d=" << distance << " | dt=" << deltaTime << std::endl;
 }
 
 void Enemy::takeDamage(float damage) {
     currentHP -= damage;
     if (currentHP < 0) currentHP = 0;
-
-    std::cout << "[Enemy] 💥 Took damage: -" << damage
-              << " | HP: " << currentHP << "/" << maxHP << std::endl;
 }
 
 void Enemy::render() {

@@ -3,6 +3,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <ui/Button.hpp>
+#include <tower/Tower.hpp>
 #include <vector>
 #include <string>
 
@@ -13,7 +14,7 @@ private:
     SDL_Texture* frameTexture = nullptr;
     int selectedTowerIndex = -1;
     TTF_Font* font;
-
+    std::vector<Tower*> towers;
 public:
     TowerManager(SDL_Renderer* renderer, TTF_Font* font);
     ~TowerManager();
@@ -22,7 +23,14 @@ public:
     void setFrameTexture(SDL_Texture* texture);
 
     void handleEvent(SDL_Event& e);
+    // void update();
     void render();
 
+    // Loại tháp đã chọn để đặt
     int getSelectedTower() const;
+
+    // Các phương thức quản lý tháp
+    void addTower(Tower* tower);
+    void removeTower(Tower* tower);
+    std::vector<Tower*> getTowers();
 };

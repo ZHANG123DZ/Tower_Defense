@@ -366,4 +366,9 @@ CMakeFiles/TowerDefense.dir/src/pages/Battle/Battle.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/uniform_int_dist.h \
  C:/msys64/ucrt64/include/c++/15.2.0/pstl/glue_algorithm_defs.h \
  C:/Users/Admin/TowerDefense2/include/ui/Modal.hpp \
- C:/Users/Admin/TowerDefense2/include/pages/Battlefields.hpp
+ C:/Users/Admin/TowerDefense2/include/pages/Battlefields.hpp \
+ C:/msys64/ucrt64/include/c++/15.2.0/fstream \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/codecvt.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/basic_file.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/x86_64-w64-mingw32/bits/c++io.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/fstream.tcc

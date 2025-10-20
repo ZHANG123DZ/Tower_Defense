@@ -25,17 +25,16 @@ Battlefields::Battlefields(Route& route) : route(route) {
     // Load background
     SDL_Surface* surface = IMG_Load("../assets/battlefields/battlefields.jpg"); 
     if (!surface) {
-        std::cout << "IMG_Load Error: " << IMG_GetError() << std::endl;
     }
     texture = SDL_CreateTextureFromSurface(route.getRenderer(), surface);
     SDL_FreeSurface(surface); 
 
     // Load nhạc
-    Mix_Music* bgMusic = Mix_LoadMUS("../assets/music/battlefieldsMusic.mp3");
-    if (!bgMusic) {
-        std::cerr << "Failed to load music: " << Mix_GetError() << std::endl;
-    }
-    Mix_PlayMusic(bgMusic, -1);
+    // Mix_Music* bgMusic = Mix_LoadMUS("../assets/music/battlefieldsMusic.mp3");
+    // if (!bgMusic) {
+    //     std::cerr << "Failed to load music: " << Mix_GetError() << std::endl;
+    // }
+    // Mix_PlayMusic(bgMusic, -1);
 
     ButtonStyleConfig styleBtn;
     styleBtn.borderColor = {0, 0, 0, 0};

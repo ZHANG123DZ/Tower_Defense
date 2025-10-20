@@ -25,7 +25,6 @@ private:
     SDL_Rect* rect = nullptr;
     Button* backButton = nullptr;
     TowerManager* towerManager = nullptr;
-    std::vector<Tower*> towers;
     ArrowManager* arrowManager = nullptr;  
     SDL_Texture* arrowTexture = nullptr;
     Map* map = nullptr;

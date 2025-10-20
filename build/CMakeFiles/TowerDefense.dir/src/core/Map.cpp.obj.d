@@ -198,6 +198,7 @@ CMakeFiles/TowerDefense.dir/src/core/Map.cpp.obj: \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_version.h \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_image.h \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL.h \
+ C:/Users/Admin/TowerDefense2/include/SDL2/SDL_ttf.h \
  C:/msys64/ucrt64/include/c++/15.2.0/string \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/requires_hosted.h \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stringfwd.h \
