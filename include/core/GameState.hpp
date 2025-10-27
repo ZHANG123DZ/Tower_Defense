@@ -11,7 +11,9 @@ enum class GameResult {
 class GameState {
 private:
     GameResult result;
-    int money;
+    int money = 0;
+    int hp;
+    int score = 0;
     bool paused;
     bool showEndModal;
 
@@ -34,4 +36,10 @@ public:
     void resetMoney();
     static GameState* getInstance();
     void reset();
+    void addScore(int p);
+    int getScore();
+
+    void setHp(int h);
+    void decreaseHp(int h);
+    int getHp();
 };

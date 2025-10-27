@@ -99,14 +99,17 @@ void EnemyManager::update(float deltaTime) {
 
     // === Cộng tiền trước khi xóa ===
     int totalMoneyGained = 0;
+    int totalScore = 0;
     for (const auto& enemy : enemies) {
         if (enemy->isDead()) {
             totalMoneyGained += 100;
+            totalScore += 100;
         }
     }
 
     if (totalMoneyGained > 0 && gameState) {
         gameState->addMoney(totalMoneyGained);
+        gameState->addScore(totalScore);
     }
 
     // === Xóa enemy đã chết hoặc đến đích ===
@@ -114,7 +117,8 @@ void EnemyManager::update(float deltaTime) {
         std::remove_if(enemies.begin(), enemies.end(),
             [this](const std::unique_ptr<Enemy>& e) {
                 if (e->reachedEnd()) {
-                    this->baseHP--;
+                    int curHp = gameState->getHp();
+                    gameState->decreaseHp(curHp--);
                     return true;
                 }
                 return e->isDead();
@@ -135,16 +139,8 @@ const std::vector<std::unique_ptr<Enemy>>& EnemyManager::getEnemies() const {
     return enemies;
 }
 
-void EnemyManager::setBaseHP(int hp) {
-    baseHP = hp;
-}
-
-int EnemyManager::getBaseHP() const {
-    return baseHP;
-}
-
 bool EnemyManager::isGameOver() const {
-    return baseHP <= 0;
+    return gameState->getHp() <= 0;
 }
 
 bool EnemyManager::isFinished() const {

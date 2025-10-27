@@ -15,6 +15,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/TowerDefense.dir/src/pages/Battle/Battle.cpp.obj.d"
   "CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.obj"
   "CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.obj.d"
+  "CMakeFiles/TowerDefense.dir/src/pages/History/History.cpp.obj"
+  "CMakeFiles/TowerDefense.dir/src/pages/History/History.cpp.obj.d"
   "CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.obj"
   "CMakeFiles/TowerDefense.dir/src/pages/home/Home.cpp.obj.d"
   "CMakeFiles/TowerDefense.dir/src/route/Route.cpp.obj"

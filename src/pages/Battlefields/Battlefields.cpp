@@ -6,12 +6,14 @@
 #include <ui/Button.hpp>
 #include <pages/Home.hpp>
 #include <pages/Battle.hpp>
+#include <pages/History.hpp>
 
 Battlefields::~Battlefields() {
     if (texture) {
         SDL_DestroyTexture(texture);
     }
     delete backButton;
+    delete historyButton;
     for (auto* btn : battles) delete btn;
 }
 
@@ -50,6 +52,15 @@ Battlefields::Battlefields(Route& route) : route(route) {
         route.setPage(new Home(route));
     });
 
+    historyButton = new Button(route.getRenderer(), 790, 900, 165, 60, "", font);
+
+    SDL_Rect historySrc = {790, 900, 165, 60};
+    // Gắn các thuộc tính cho nút history
+    historyButton->applyStyle(styleBtn);
+    historyButton->setBackgroundTexture(texture, historySrc);
+    historyButton->setOnClick([&]() {
+        route.setPage(new History(route));
+    });
     // Nút các màn chơi
     struct LevelBtn {
         int x, y, w, h;
@@ -81,6 +92,7 @@ Battlefields::Battlefields(Route& route) : route(route) {
 
 void Battlefields::handleEvent(SDL_Event& e) {
     backButton->handleEvent(e);
+    historyButton->handleEvent(e);
     for (auto* btn : battles) btn->handleEvent(e);
 }
 
@@ -90,6 +102,7 @@ void Battlefields::render(SDL_Renderer* renderer) {
     
     // Vẽ nút
     backButton->render();
+    historyButton->render();
     for (auto* btn : battles) btn->render();
 
     SDL_RenderPresent(renderer);

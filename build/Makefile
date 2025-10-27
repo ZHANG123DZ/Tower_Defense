@@ -320,6 +320,30 @@ src/pages/Battlefields/Battlefields.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.s
 .PHONY : src/pages/Battlefields/Battlefields.cpp.s
 
+src/pages/History/History.obj: src/pages/History/History.cpp.obj
+.PHONY : src/pages/History/History.obj
+
+# target to build an object file
+src/pages/History/History.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/History/History.cpp.obj
+.PHONY : src/pages/History/History.cpp.obj
+
+src/pages/History/History.i: src/pages/History/History.cpp.i
+.PHONY : src/pages/History/History.i
+
+# target to preprocess a source file
+src/pages/History/History.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/History/History.cpp.i
+.PHONY : src/pages/History/History.cpp.i
+
+src/pages/History/History.s: src/pages/History/History.cpp.s
+.PHONY : src/pages/History/History.s
+
+# target to generate assembly for a file
+src/pages/History/History.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\TowerDefense.dir\build.make CMakeFiles/TowerDefense.dir/src/pages/History/History.cpp.s
+.PHONY : src/pages/History/History.cpp.s
+
 src/pages/home/Home.obj: src/pages/home/Home.cpp.obj
 .PHONY : src/pages/home/Home.obj
 
@@ -545,6 +569,9 @@ help:
 	@echo ... src/pages/Battlefields/Battlefields.obj
 	@echo ... src/pages/Battlefields/Battlefields.i
 	@echo ... src/pages/Battlefields/Battlefields.s
+	@echo ... src/pages/History/History.obj
+	@echo ... src/pages/History/History.i
+	@echo ... src/pages/History/History.s
 	@echo ... src/pages/home/Home.obj
 	@echo ... src/pages/home/Home.i
 	@echo ... src/pages/home/Home.s

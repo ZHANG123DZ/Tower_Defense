@@ -30,8 +30,6 @@ public:
 
     // --- Lấy thông tin ---
     const std::vector<std::unique_ptr<Enemy>>& getEnemies() const; // Dùng để cho Tower nhắm bắn
-    int getBaseHP() const;
-    void setBaseHP(int hp);
     bool isGameOver() const;
     bool isFinished() const; // Kiểm tra xem đã hoàn thành tất cả các wave chưa
 
@@ -65,7 +63,4 @@ private:
     float spawnTimer = 0.0f;
     float interWaveTimer = 0.0f; // Timer đếm thời gian nghỉ
     int enemiesSpawnedThisWave = 0;
-    
-    // Trạng thái người chơi
-    int baseHP = 1;
 };

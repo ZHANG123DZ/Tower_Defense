@@ -18,6 +18,13 @@
 
 class Battle : public Page {
 private:
+    // Time
+    Uint32 startTime = 0;
+    Uint32 endTime = 0;
+    SDL_Texture* timeTexture;
+    SDL_Rect timeRect;
+    bool gameEnded = false;
+
     // Money
     SDL_Texture* moneyTexture = nullptr;
     SDL_Rect moneyRect;
@@ -53,4 +60,6 @@ public:
 
     void updateMoneyTexture(SDL_Renderer* renderer, int money);
     void updateHPTexture(SDL_Renderer* renderer, int hp);
+    void updateTimeTexture(SDL_Renderer* renderer);
+    void saveHistory(const std::string& status, int score);
 };

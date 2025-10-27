@@ -38,3 +38,22 @@ void GameState::reset() {
     paused = false;
     showEndModal = false;
 }
+
+void GameState::addScore(int p) {
+    score += p;
+}
+
+int GameState::getScore() {
+    return score;
+}
+
+void GameState::setHp(int h) {
+    hp = h;
+}
+
+void GameState::decreaseHp(int h) {
+    hp -= h;
+}
+int GameState::getHp() {
+    return hp;
+}

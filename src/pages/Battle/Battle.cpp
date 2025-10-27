@@ -5,7 +5,22 @@
 #include <core/GameState.hpp>
 #include <iostream>
 #include <fstream>
-#include <vector> 
+#include <vector>
+#include <ctime>
+#include <iomanip>
+#include <sstream> 
+
+std::string getVietnamTime() {
+    std::time_t now = std::time(nullptr);
+    now += 7 * 3600;                     
+
+    std::tm *vn_time = std::gmtime(&now);
+
+    std::ostringstream oss;
+    oss << std::put_time(vn_time, "%Y-%m-%d %H:%M:%S");
+
+    return oss.str();
+}
 
 Battle::~Battle() {
     if (texture) SDL_DestroyTexture(texture);
@@ -140,7 +155,7 @@ Battle::Battle(Route& route, int level)
     int startingMoney = 0, startingHP = 0;
     configFile >> startingMoney >> startingHP;
     gameState->setMoney(startingMoney);
-    enemyManager->setBaseHP(startingHP);
+    gameState->setHp(startingHP);
 
     // ===== LOAD WAVES =====
     std::string path = "../assets/waves/waves" + std::to_string(level) + ".txt";
@@ -178,6 +193,9 @@ Battle::Battle(Route& route, int level)
     GameState::getInstance()->pause(); 
     GameState::getInstance()->setResult(GameResult::None);
     GameState::getInstance()->setPaused(false);
+
+    // ===== BẮT ĐẦU GHI THỜI GIAN =====
+    startTime = SDL_GetTicks();
 }
 
 
@@ -284,9 +302,47 @@ void Battle::updateHPTexture(SDL_Renderer* renderer, int hp) {
     SDL_FreeSurface(textSurface);
 }
 
+void Battle::updateTimeTexture(SDL_Renderer* renderer) {
+    if (!font) {
+        std::cerr << "updateTimeTexture: font is NULL\n";
+        return;
+    }
+
+    //  Dùng endTime nếu game đã kết thúc
+    Uint32 currentTime = gameEnded ? endTime : SDL_GetTicks();
+    Uint32 elapsedTime = currentTime - startTime;
+
+    int totalSeconds = elapsedTime / 1000;
+    int minutes = totalSeconds / 60;
+    int seconds = totalSeconds % 60;
+
+    char buffer[16];
+    snprintf(buffer, sizeof(buffer), "%02d:%02d", minutes, seconds);
+
+    std::string timeText = "Time: ";
+    timeText += buffer;
+
+    if (timeTexture) {
+        SDL_DestroyTexture(timeTexture);
+        timeTexture = nullptr;
+    }
+
+    SDL_Color color = {255, 255, 0, 255}; 
+    SDL_Surface* surface = TTF_RenderText_Solid(font, timeText.c_str(), color);
+    if (!surface) {
+        std::cerr << "Time Text Render Error: " << TTF_GetError() << std::endl;
+        return;
+    }
+
+    timeTexture = SDL_CreateTextureFromSurface(renderer, surface);
+    timeRect = {780, 50, surface->w, surface->h};
+
+    SDL_FreeSurface(surface);
+}
+
 void Battle::render(SDL_Renderer* renderer) {
     SDL_RenderCopy(renderer, texture, nullptr, nullptr);
-    
+
     if (map) map->render();
     if (arrowManager) arrowManager->render(renderer);
     if (enemyManager) enemyManager->render();
@@ -313,13 +369,9 @@ void Battle::update() {
     int money = gameState->getMoney();
     updateMoneyTexture(route.getRenderer(), money);
 
-    int currentHp = enemyManager->getBaseHP();
+    int currentHp = gameState->getHp();
     updateHPTexture(route.getRenderer(), currentHp);
 
-    if (gameState->isPaused() || (endGameModal && endGameModal->isVisible())) {
-        return;
-    }
-    
     // Cập nhật tất cả các manager
     if (arrowManager) arrowManager->update(deltaTime);
     // if (towerManager) towerManager->update(deltaTime);
@@ -343,8 +395,10 @@ void Battle::update() {
     if (gameState->getResult() == GameResult::None) {
         // Điều kiện thua
         if (enemyManager->isGameOver()) {
-
             gameState->setResult(GameResult::Lose);
+            int score = gameState->getScore();
+            std::cout<< score << "\n";
+            saveHistory("Defeat", score);
             if (endGameModal) {
                 Route* routePtr = &route;
 
@@ -375,6 +429,9 @@ void Battle::update() {
         // Điều kiện thắng
         else if (enemyManager->isFinished()) {
             gameState->setResult(GameResult::Win);
+            int score = gameState->getScore();
+            std::cout<< score << "\n";
+            saveHistory("Win", score);
             if (endGameModal) {
                 Route* routePtr = &route;
 
@@ -405,4 +462,23 @@ void Battle::update() {
             gameState->pause();
         }
     }
+}
+
+void Battle::saveHistory(const std::string& status, int score) {
+    std::ofstream file("../assets/data/history.txt", std::ios::app);
+    if (!file.is_open()) {
+        std::cerr << "Failed to open history file for writing." << std::endl;
+        return;
+    }
+
+    std::string timeStr = getVietnamTime();
+
+    std::string levelStr = std::to_string(level);
+
+    file << timeStr << " | " 
+         << levelStr << " | " 
+         << status << " | " 
+         << score << "\n";
+
+    file.close();
 }

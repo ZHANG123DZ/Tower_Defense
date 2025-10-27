@@ -15,6 +15,7 @@ add_executable(${PROJECT_NAME}
     src/pages/home/Home.cpp
     src/pages/Battlefields/Battlefields.cpp
     src/pages/Battle/Battle.cpp
+    src/pages/History/History.cpp
     src/tower/TowerManager.cpp
     src/tower/Tower.cpp
     src/enemy/EnemyManager.cpp

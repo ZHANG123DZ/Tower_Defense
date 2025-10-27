@@ -367,4 +367,5 @@ CMakeFiles/TowerDefense.dir/src/pages/Battlefields/Battlefields.cpp.obj: \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_heap.h \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/uniform_int_dist.h \
  C:/msys64/ucrt64/include/c++/15.2.0/pstl/glue_algorithm_defs.h \
- C:/Users/Admin/TowerDefense2/include/ui/Modal.hpp
+ C:/Users/Admin/TowerDefense2/include/ui/Modal.hpp \
+ C:/Users/Admin/TowerDefense2/include/pages/History.hpp

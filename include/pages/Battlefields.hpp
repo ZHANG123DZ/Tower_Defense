@@ -14,6 +14,7 @@ private:
     SDL_Texture* texture;
     SDL_Rect* rect;
     Button* backButton;
+    Button* historyButton;
     std::vector<Button*> battles;
     Mix_Music* bgMusic;
 public:
