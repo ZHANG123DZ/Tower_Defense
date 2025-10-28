@@ -3,8 +3,8 @@
 #include <algorithm>
 #include <tower/Tower.hpp>
 
-TowerManager::TowerManager(SDL_Renderer* renderer, TTF_Font* font)
-    : renderer(renderer), font(font) {}
+TowerManager::TowerManager(SDL_Renderer* renderer, TTF_Font* font, Route& route)
+    : renderer(renderer), font(font), route(route) {}
 
 TowerManager::~TowerManager() {
     for (auto* btn : towerButtons) delete btn;
@@ -46,7 +46,7 @@ void TowerManager::loadTowers(const std::vector<std::string>& towerImages) {
         btn->setBackgroundTexture(tex);
 
         btn->setOnClick([this, i]() {
-            selectedTowerIndex = i;
+            this->setSelectedTower(i);
         });
 
         towerButtons.push_back(btn);
@@ -97,6 +97,19 @@ void TowerManager::render() {
 
 int TowerManager::getSelectedTower() const {
     return selectedTowerIndex;
+}
+
+void TowerManager::setSelectedTower(int index) {
+    if (index == selectedTowerIndex) {
+        selectedTowerIndex = -1;
+    } else {
+        selectedTowerIndex = index;
+    }
+    if (selectedTowerIndex != -1) {
+        route.SetCursor("../assets/cursors/build_hammer.png", 16, 16);
+    } else {
+        route.SetCursor("../assets/cursors/default_cursor.png", 0, 0); 
+    }
 }
 
 void TowerManager::addTower(Tower* tower) {

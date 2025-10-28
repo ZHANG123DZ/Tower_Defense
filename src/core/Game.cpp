@@ -14,19 +14,7 @@
 #include <pages/Home.hpp>
 #include <pages/Page.hpp>
 
-Route* route = nullptr;
-
-
-std::vector<std::vector<int>> level = {
-    {2,2,2,2,2,1,2,2,2,2,2,2},
-    {2,2,2,2,2,2,2,2,2,2,2,2},
-    {2,2,2,2,2,2,2,2,2,2,2,2},
-    {2,2,2,2,2,2,2,2,2,2,2,2},
-    {2,2,2,2,2,2,2,2,2,2,2,2},
-    {2,2,2,2,2,2,2,2,2,2,2,2}
-};
-
-Game::Game() : isRunning(false) {}
+Game::Game() : isRunning(false), gameRoute(nullptr) {}
 
 Game::~Game() {
     ShutDown();
@@ -70,7 +58,14 @@ bool Game::Initialize(const char* title, int width, int height, bool fullScreen 
         SDL_Quit();
         return false;
     }
+
+    // SetCursor
+    gameRoute = new Route(renderer);
+    if (gameRoute) {
+        gameRoute->SetCursor("../assets/cursors/default_cursor.png", 0, 0);
+    }
     
+    // Load font chữ
     TTF_Font* font = TTF_OpenFont("../assets/fonts/Roboto-Regular.ttf", 24);
     setFont(font);
 
@@ -79,7 +74,7 @@ bool Game::Initialize(const char* title, int width, int height, bool fullScreen 
         return false;
     }
 
-    route = new Route(renderer);
+    gameRoute = new Route(renderer);
     isRunning = true;
     return true;
 }
@@ -99,12 +94,12 @@ void Game::Run() {
                 SDL_GetMouseState(&x, &y);
                 printf("Click tại: (%d, %d)\n", x, y);
             }
-            route->handleEvent(e);
+            if (gameRoute) gameRoute->handleEvent(e);
         } 
-        route->update();
+        if (gameRoute) gameRoute->update();
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderClear(renderer);
-        route->render();
+        if (gameRoute) gameRoute->render();
         SDL_RenderPresent(renderer);
         SDL_Delay(16);
     }

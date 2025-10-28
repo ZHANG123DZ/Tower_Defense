@@ -4,7 +4,9 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_ttf.h>
 #include <SDL2/SDL_mixer.h>
+#include <route/Route.hpp>
 
+class Route;
 class Game {
 public: 
     Game();
@@ -23,4 +25,5 @@ private:
     bool isRunning = false;
     int _width = 0;
     int _height = 0;
+    Route* gameRoute = nullptr;
 };

@@ -6,6 +6,7 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_mixer.h>
 #include <iostream>
+#include <algorithm>
 
 // Hàm hỗ trợ render text
 void History::renderText(SDL_Renderer* renderer, TTF_Font* font, const std::string& text, int x, int y, SDL_Color color) {
@@ -137,8 +138,12 @@ void History::render(SDL_Renderer* renderer) {
 
     SDL_Color white = { 255, 255, 255, 255 };
 
-    for (size_t i = 0; i < historyEntries.size(); ++i) {
-        const auto& entry = historyEntries[i];
+    std::vector<HistoryEntry> displayEntries = historyEntries;
+    std::reverse(displayEntries.begin(), displayEntries.end());
+    size_t numToDisplay = std::min((size_t)11, displayEntries.size());
+
+    for (size_t i = 0; i < numToDisplay; ++i) {
+        const auto& entry = displayEntries[i];
         renderText(renderer, font, entry.time, startX, startY + i * lineHeight, white);
         renderText(renderer, font, entry.level, startX + 290, startY + i * lineHeight, white);
         renderText(renderer, font, entry.status, startX + 480, startY + i * lineHeight, white);

@@ -95,7 +95,7 @@ Battle::Battle(Route& route, int level)
     endGameModal->setVisible(false);
 
     // ===== TOWER MANAGER =====
-    towerManager = new TowerManager(route.getRenderer(), font);
+    towerManager = new TowerManager(route.getRenderer(), font, route);
     SDL_Texture* frameTex = IMG_LoadTexture(route.getRenderer(), "../assets/tower/frameTower.png");
     towerManager->setFrameTexture(frameTex);
     towerManager->loadTowers({
@@ -108,7 +108,7 @@ Battle::Battle(Route& route, int level)
     towerManager->setPrices(prices);
     // ===== ARROW MANAGER =====
     arrowManager = new ArrowManager();
-    arrowTexture = IMG_LoadTexture(route.getRenderer(), "../assets/arrow/arrow.png");
+    arrowTexture = IMG_LoadTexture(route.getRenderer(), "../assets/bullet/bullet.png");
     arrowManager->setArrowTexture(arrowTexture);
 
     // ===== MAP MANAGER =====
@@ -227,7 +227,7 @@ void Battle::handleEvent(SDL_Event& e) {
                 "../assets/tower/magicTower.png",
                 "../assets/tower/machineTower.png"
             };
-
+            
             if (selectTower >= 0 && selectTower < (int)links.size() && currentMoney>=prices[selectTower]) {
                 SDL_Rect dest = clicked->getDestRect();
                 Tower* newTower = new Tower(
@@ -239,7 +239,18 @@ void Battle::handleEvent(SDL_Event& e) {
                 towerManager->addTower(newTower);
                 clicked->setHasTower(true);
                 gameState->decreaseMoney(prices[selectTower]);
+                towerManager->setSelectedTower(-1);
+            } else {
+                towerManager->setSelectedTower(-1);
             }
+        } else if (towerManager->isTowerSelectedForBuild()) {
+            towerManager->setSelectedTower(-1);
+        }
+    }
+
+    if (e.type == SDL_KEYDOWN && e.key.keysym.sym == SDLK_ESCAPE) {
+        if (towerManager->isTowerSelectedForBuild()) {
+            towerManager->setSelectedTower(-1);
         }
     }
 }
@@ -275,7 +286,7 @@ void Battle::updateMoneyTexture(SDL_Renderer* renderer, int money) {
 }
 
 void Battle::updateHPTexture(SDL_Renderer* renderer, int hp) {
-    if (hp == lastHP) return;  // Nếu máu không đổi thì không làm gì
+    if (hp == lastHP) return;
 
     if (hpTexture) {
         SDL_DestroyTexture(hpTexture);
@@ -395,6 +406,7 @@ void Battle::update() {
     if (gameState->getResult() == GameResult::None) {
         // Điều kiện thua
         if (enemyManager->isGameOver()) {
+            towerManager->setSelectedTower(-1);
             gameState->setResult(GameResult::Lose);
             int score = gameState->getScore();
             std::cout<< score << "\n";
@@ -428,6 +440,7 @@ void Battle::update() {
         } 
         // Điều kiện thắng
         else if (enemyManager->isFinished()) {
+            towerManager->setSelectedTower(-1);
             gameState->setResult(GameResult::Win);
             int score = gameState->getScore();
             std::cout<< score << "\n";

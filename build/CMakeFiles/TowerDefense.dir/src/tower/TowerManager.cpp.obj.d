@@ -339,6 +339,12 @@ CMakeFiles/TowerDefense.dir/src/tower/TowerManager.cpp.obj: \
  C:/Users/Admin/TowerDefense2/include/SDL2/SDL_mixer.h \
  C:/Users/Admin/TowerDefense2/include/enemy/Enemy.hpp \
  C:/Users/Admin/TowerDefense2/include/tower/ArrowManager.hpp \
+ C:/Users/Admin/TowerDefense2/include/route/Route.hpp \
+ C:/msys64/ucrt64/include/c++/15.2.0/map \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_tree.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_map.h \
+ C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_multimap.h \
+ C:/Users/Admin/TowerDefense2/include/pages/Page.hpp \
  C:/msys64/ucrt64/include/c++/15.2.0/algorithm \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/stl_algo.h \
  C:/msys64/ucrt64/include/c++/15.2.0/bits/algorithmfwd.h \

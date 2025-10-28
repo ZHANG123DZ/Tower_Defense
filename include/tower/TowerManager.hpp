@@ -4,6 +4,7 @@
 #include <SDL2/SDL_ttf.h>
 #include <ui/Button.hpp>
 #include <tower/Tower.hpp>
+#include <route/Route.hpp>
 #include <vector>
 #include <string>
 
@@ -16,8 +17,9 @@ private:
     int selectedTowerIndex = -1;
     TTF_Font* font;
     std::vector<Tower*> towers;
+    Route& route;
 public:
-    TowerManager(SDL_Renderer* renderer, TTF_Font* font);
+    TowerManager(SDL_Renderer* renderer, TTF_Font* font, Route& route);
     ~TowerManager();
 
     void loadTowers(const std::vector<std::string>& towerImages);
@@ -30,6 +32,10 @@ public:
 
     // Loại tháp đã chọn để đặt
     int getSelectedTower() const;
+    void setSelectedTower(int index);
+    bool isTowerSelectedForBuild() const {
+        return selectedTowerIndex != -1;
+    }
 
     // Các phương thức quản lý tháp
     void addTower(Tower* tower);
